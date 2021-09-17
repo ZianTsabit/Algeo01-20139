@@ -55,7 +55,7 @@ class Matrix {
 	}
     }
     void tulisMatriks(int M, int N) {
-    // Mencetak elemen matriks ke layar
+    // Mencetak elemen matriks berukuran M x N ke layar
 	int i, j;
 
 	for (i=0; i<M; i++) {
@@ -76,13 +76,25 @@ class Matrix {
 	    this.Mat[M][j] = this.Mat[N][j];
 	    this.Mat[N][j] = temp;
 	}
-    } /*
-    - tambahBaris
-    - kaliBaris
-    - 
-	
+    }
+    void tambahBaris(int M, int N) {
+    // Menambah baris ke-M dengan baris ke-N
+	int j;
 
-        ===FUNGSI - FUNGSI===
+	for (j=0; j<10; j++) {
+	    this.Mat[M][j] = this.Mat[M][j] + this.Mat[N][j];
+	}
+    }
+    void kaliBaris(int i, int val) {
+    // Mengalikan baris ke-i dengan val
+	int j;
+
+	for (j=0; j<10; j++) {
+	    this.Mat[i][j] = this.Mat[i][j] * val;
+	}
+    }
+
+    /* ===FUNGSI - FUNGSI===
     - determinan
     - inversMatrix
     - gauss
