@@ -3,6 +3,8 @@ class Matrix {
     // Atribut
     int[][] Mat = new int[10][10];
 
+    // Method:
+
     /* ===CONSTRUCTOR=== */
     Matrix() {
         int i,j;
@@ -14,19 +16,27 @@ class Matrix {
     }
 
     void makeMatriks(Matrix M) {
+    // Membuat matriks M
         M = new Matrix();
     }
-    
 
+    /* ===SELEKTOR=== */
+    void getBaris(int i) {
+    // Mengeluarkan baris Matrix M dengan indeks ke-i
+        int j;
+	for (j=0; j<10; j++) {
+	    System.out.print(this.Mat[i][j] + " ");
+	}
+    }
+    void getKolom(int j) {
+    // Mengeluarkan kolom Matrix M dengan indeks ke-j
+        int i;
+	for (i=0; i<10; j++) {
+	    System.out.println(this.Mat[i][j]);
+	}
+    }
 
-
-    /*    ===SELEKTOR===
-    - getBaris
-    - getKolom
-    - setBaris
-    - setKolom
-
-        ===INPUT ATAU OUTPUT ===
+    /*    ===INPUT ATAU OUTPUT ===
     - BacaMatriks
     - TulisMatriks
 
