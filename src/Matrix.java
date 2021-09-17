@@ -80,6 +80,14 @@ class Matrix {
 	    		this.Mat[M][j] = this.Mat[M][j] + this.Mat[N][j];
 		}
     	}
+	void kurangBaris(int M, int N) {
+	// Mengurang baris ke-M dengan baris ke-N
+		int j;
+		
+		for (j=0; j<10; j++) {
+	    		this.Mat[M][j] = this.Mat[M][j] - this.Mat[N][j];
+		}
+	}
     	void kaliBaris(int i, int val) {
     	// Mengalikan baris ke-i dengan val
 		int j;
@@ -88,6 +96,16 @@ class Matrix {
 	    		this.Mat[i][j] = this.Mat[i][j] * val;
 		}
     	}
+	void Transpose(int M, int N, int Mtrx[][]) {
+	// Menghasilkan matriks transpose
+		int i, j;
+
+		for (i=0; i<M; i++) {
+			for (j=0; j<N; j++) {
+				Mtrx[N][M] = this.Mat[i][j];
+			}
+		}
+	}
 
     	/* VALIDITAS */
     	static boolean isZero(int M[][], int i, int j) {
@@ -105,7 +123,11 @@ class Matrix {
 	    		}
 		}
 		return flag;
-    	}
+	}
+	static boolean isPersegi(int i, int j) {
+	// Menghasilkan true apabila baris matriks = kolom matriks
+		return (i == j);
+	}
 
     	/* ===FUNGSI - FUNGSI===
     - determinan
@@ -118,7 +140,6 @@ class Matrix {
 
     
     */
-    void Gauss(
 
 
 
