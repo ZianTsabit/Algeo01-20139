@@ -66,11 +66,21 @@ class Matrix {
 	}
     }
 
-    /*    ===FUNGSI HELPER===
-    - tukarBaris
+    /* ===FUNGSI HELPER=== */
+    void tukarBaris(int M, int N) {
+    // Menukar baris ke-M dengan baris ke-N
+	int j, temp;
+
+	for (j=0; j<10; j++) {
+	    temp = this.Mat[M][j];
+	    this.Mat[M][j] = this.Mat[N][j];
+	    this.Mat[N][j] = temp;
+	}
+    } /*
     - tambahBaris
     - kaliBaris
     - 
+	
 
         ===FUNGSI - FUNGSI===
     - determinan
