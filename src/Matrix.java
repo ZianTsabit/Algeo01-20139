@@ -20,7 +20,7 @@ class Matrix {
 
     void makeMatriks(Matrix M) {
     // Membuat matriks M
-        M = new Matrix();
+	M = new Matrix();
     }
 
     /* ===SELEKTOR=== */
@@ -94,6 +94,24 @@ class Matrix {
 	}
     }
 
+    /* VALIDITAS */
+    static boolean isZero(int M[][], int i, int j) {
+    // Menghasilkan true apabila baris ke-i kolom ke-j dari matriks M bernilai 0
+	return (M[i][j] == 0);
+    }
+    static boolean isBarisZero(int M[][], int i, int kolom) {
+    // Menghasilkan true apabila nilai baris ke-i dari matriks M bernilai 0
+	boolean flag = true;
+	int j = 0;
+
+	while (j<kolom && flag) {
+	    if (M[i][j] != 0) {
+		flag = false;
+	    }
+	}
+	return flag;
+    }
+
     /* ===FUNGSI - FUNGSI===
     - determinan
     - inversMatrix
@@ -103,9 +121,8 @@ class Matrix {
 
 
 
+    
     */
-
-
 
 
 
