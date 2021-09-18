@@ -121,12 +121,21 @@ public class Matrix {
 		}
 	}
 
-	void kaliBaris(int i, int val) {
+	void kaliBaris(int i, double val) {
 		// Mengalikan baris ke-i dengan val
-		int j;
+		if (i < 1 || i > this.brs){
+			System.out.println("Masukkan baris tidak valid");
+		}else{
+			if (val == 0){
+				System.out.println("Masukkan konstanta tidak valid");
+			}else{
+				for (int j = 0; j < this.kol; j++) {
+					this.Mat[i][j] = this.Mat[i][j] * val;
+				}
 
-		for (j = 0; j < 10; j++) {
-			this.Mat[i][j] = this.Mat[i][j] * val;
+			}
+
+			
 		}
 	}
 
@@ -136,7 +145,7 @@ public class Matrix {
 
 		for (i = 0; i < M; i++) {
 			for (j = 0; j < N; j++) {
-				Mtrx[N][M] = this.Mat[i][j];
+				this.Mtrx[N][M] = this.Mat[i][j];
 			}
 		}
 	}
