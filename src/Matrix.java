@@ -52,9 +52,6 @@ public class Matrix {
 		return	this.kol;
 	}
 
-
-
-
 	int getFirstIndeks(int jmlBrs){
 		/* return indeks klom tidak nol pertama*/
 		boolean found = false;
@@ -75,7 +72,6 @@ public class Matrix {
 
 
 	}
-
 
 
 	/* ===INPUT ATAU OUTPUT === */
@@ -105,16 +101,23 @@ public class Matrix {
 	}
 
 	/* ===FUNGSI HELPER=== */
-	void tukarBaris(int M, int N) {
+	public void tukarBaris(int M, int N) {
 		// Menukar baris ke-M dengan baris ke-N
 		int j; 
 		double temp;
 
-		for (j = 0; j < this.kol; j++) {
-			temp = this.Mat[M][j];
-			this.Mat[M][j] = this.Mat[N][j];
-			this.Mat[N][j] = temp;
-		}
+		if (M < 1 || M > this.brs){
+			System.out.println("Masukkan baris 1 tidak valid");
+		}else if (N < 1 || N > this.brs){
+			System.out.println("Masukkan baris 2 tidak valid");
+
+		}else{
+			for (j = 0; j < this.kol; j++) {
+				temp = this.Mat[M][j];
+				this.Mat[M][j] = this.Mat[N][j];
+				this.Mat[N][j] = temp;
+			}
+		}	
 	}
 
 	void tambahBaris(int M, int N) {
