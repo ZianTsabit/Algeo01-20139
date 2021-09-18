@@ -120,12 +120,18 @@ public class Matrix {
 		}	
 	}
 
-	void tambahBaris(int M, int N) {
+	public void tambahBaris(int M, int N) {
 		// Menambah baris ke-M dengan baris ke-N
 		int j;
 
-		for (j = 0; j < this.kol; j++) {
-			this.Mat[M][j] = this.Mat[M][j] + this.Mat[N][j];
+		if (M < 1 || M > this.brs){
+			System.out.println("Masukkan baris 1 tidak valid");
+		}else if(N < 1 || N > this.brs){
+			System.out.println("Masukkan baris 2 tidak valid");
+		}else{
+			for (j = 0; j < this.kol; j++) {
+				this.Mat[M][j] = this.Mat[M][j] + this.Mat[N][j];
+			}
 		}
 	}
 
