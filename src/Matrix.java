@@ -42,6 +42,19 @@ public class Matrix {
 		}
 	}
 
+	public int getJmlBrs(){
+		// Mengeluarkan jumlah baris
+		return this.brs;
+	}
+
+	public int getJmlKol(){
+		//Mengeluarkan jumlah kolom
+		return	this.kol;
+	}
+
+
+
+
 	int getFirstIndeks(int jmlBrs){
 		/* return indeks klom tidak nol pertama*/
 		boolean found = false;
@@ -124,10 +137,19 @@ public class Matrix {
 
 	void kaliBaris(int i, double val) {
 		// Mengalikan baris ke-i dengan val
-		int j;
+		if (i < 1 || i > this.brs){
+			System.out.println("Masukkan baris tidak valid");
+		}else{
+			if (val == 0){
+				System.out.println("Masukkan konstanta tidak valid");
+			}else{
+				for (int j = 0; j < this.kol; j++) {
+					this.Mat[i][j] = this.Mat[i][j] * val;
+				}
 
-		for (j = 0; j < this.kol; j++) {
-			this.Mat[i][j] = this.Mat[i][j] * val;
+			}
+
+			
 		}
 	}
 
