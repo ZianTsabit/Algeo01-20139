@@ -42,8 +42,24 @@ public class Matrix {
 		}
 	}
 
-	int getFirstIndeks(int nBrs){
+	int getFirstIndeks(int jmlBrs){
 		/* return indeks klom tidak nol pertama*/
+		boolean found = false;
+		int i = 0;
+
+		while((i < this.kol) && !found){
+			if (this.Mat[jmlBrs][i] != 0){
+				found = true;
+			}else{
+				i++;
+			}
+		}
+		if (found){
+			return i;
+		}else{
+			return this.kol;
+		}
+
 
 	}
 
