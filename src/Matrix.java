@@ -220,14 +220,16 @@ public class Matrix {
 	 * 
 	 */
 
-	public void sort
+	public void sortMatriks(){
+
+	}
 	
 
 
 
 	void gaussForm(){
 
-	 }
+	}
 
 
 }
