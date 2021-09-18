@@ -1,17 +1,17 @@
 import java.util.*;
 
+
 public class Matrix {
 
 	// Atribut
 	public double[][] Mat;
-	protected int brs, kol; // banyak baris dan kolom
+	protected int brs, kol;
 
 
 	// Method:
 
 	/* ===CONSTRUCTOR=== */
 	public Matrix(int i, int j) {
-		//mengubah atribut matriks
 		this.brs = i;
 		this.kol = j;
 		
@@ -28,7 +28,7 @@ public class Matrix {
 		// Mengeluarkan baris Matrix M dengan indeks ke-i
 		int j;
 
-		for (j = 0; j < 10; j++) {
+		for (j = 0; j < this.kol; j++) {
 			System.out.print(this.Mat[i][j] + " ");
 		}
 	}
@@ -37,7 +37,7 @@ public class Matrix {
 		// Mengeluarkan kolom Matrix M dengan indeks ke-j
 		int i;
 
-		for (i = 0; i < 10; j++) {
+		for (i = 0; i < this.brs; j++) {
 			System.out.println(this.Mat[i][j]);
 		}
 	}
@@ -66,25 +66,25 @@ public class Matrix {
 
 
 	/* ===INPUT ATAU OUTPUT === */
-	void bacaMatriks(int M, int N) {
+	void bacaMatriks() {
 		// Mengisi elemen matriks M[i,j] dengan input pengguna
 		Scanner in = new Scanner(System.in);
 		int i, j;
 
-		for (i = 0; i < M; i++) {
-			for (j = 0; j < N; j++) {
+		for (i = 0; i < this.brs; i++) {
+			for (j = 0; j < this.kol; j++) {
 				System.out.print("Nilai baris ke-" + i + " kolom ke-" + j + ": ");
 				this.Mat[i][j] = in.nextInt();
 			}
 		}
 	}
 
-	void tulisMatriks(int M, int N) {
+	void tulisMatriks() {
 		// Mencetak elemen matriks berukuran M x N ke layar
 		int i, j;
 
-		for (i = 0; i < M; i++) {
-			for (j = 0; j < N; j++) {
+		for (i = 0; i < this.brs; i++) {
+			for (j = 0; j < this.kol; j++) {
 				System.out.print(this.Mat[i][j] + " ");
 			}
 			System.out.println();
@@ -94,9 +94,10 @@ public class Matrix {
 	/* ===FUNGSI HELPER=== */
 	void tukarBaris(int M, int N) {
 		// Menukar baris ke-M dengan baris ke-N
-		int j, temp;
+		int j; 
+		double temp;
 
-		for (j = 0; j < 10; j++) {
+		for (j = 0; j < this.kol; j++) {
 			temp = this.Mat[M][j];
 			this.Mat[M][j] = this.Mat[N][j];
 			this.Mat[N][j] = temp;
@@ -107,7 +108,7 @@ public class Matrix {
 		// Menambah baris ke-M dengan baris ke-N
 		int j;
 
-		for (j = 0; j < 10; j++) {
+		for (j = 0; j < this.kol; j++) {
 			this.Mat[M][j] = this.Mat[M][j] + this.Mat[N][j];
 		}
 	}
@@ -116,62 +117,58 @@ public class Matrix {
 		// Mengurang baris ke-M dengan baris ke-N
 		int j;
 
-		for (j = 0; j < 10; j++) {
+		for (j = 0; j < this.kol; j++) {
 			this.Mat[M][j] = this.Mat[M][j] - this.Mat[N][j];
 		}
 	}
 
 	void kaliBaris(int i, double val) {
 		// Mengalikan baris ke-i dengan val
-		if (i < 1 || i > this.brs){
-			System.out.println("Masukkan baris tidak valid");
-		}else{
-			if (val == 0){
-				System.out.println("Masukkan konstanta tidak valid");
-			}else{
-				for (int j = 0; j < this.kol; j++) {
-					this.Mat[i][j] = this.Mat[i][j] * val;
-				}
+		int j;
 
-			}
-
-			
+		for (j = 0; j < this.kol; j++) {
+			this.Mat[i][j] = this.Mat[i][j] * val;
 		}
 	}
 
-	void Transpose(int M, int N, int Mtrx[][]) {
+	void Transpose(double Mtrx[][]) {
 		// Menghasilkan matriks transpose
 		int i, j;
 
-		for (i = 0; i < M; i++) {
-			for (j = 0; j < N; j++) {
-				this.Mtrx[N][M] = this.Mat[i][j];
+		for (i = 0; i < this.brs; i++) {
+			for (j = 0; j < this.kol; j++) {
+				Mtrx[j][i] = this.Mat[i][j];
 			}
 		}
 	}
 
 	/* VALIDITAS */
-	static boolean isZero(int M[][], int i, int j) {
+	boolean isZero(int i, int j) {
 		// Menghasilkan true apabila baris ke-i kolom ke-j dari matriks M bernilai 0
-		return (M[i][j] == 0);
+		return (this.Mat[i][j] == 0);
 	}
 
-	static boolean isBarisZero(int M[][], int i, int kolom) {
+	boolean isBarisZero(int i) {
 		// Menghasilkan true apabila nilai baris ke-i dari matriks M bernilai 0
 		boolean flag = true;
 		int j = 0;
 
-		while (j < kolom && flag) {
-			if (M[i][j] != 0) {
+		while (j < this.kol && flag) {
+			if (this.Mat[i][j] != 0) {
 				flag = false;
 			}
 		}
 		return flag;
 	}
 
-	public boolean isPersegi() {
+	boolean isPersegi() {
 		// Menghasilkan true apabila baris matriks = kolom matriks
 		return (this.brs == this.kol);
+	}
+
+	boolean isIdxValid(int i, int j) {
+		// Menghasilkan true apabila index valid
+		return (i >= 0 && i < this.brs && j >= 0 && j < this.kol);
 	}
 
 	/*
@@ -187,12 +184,7 @@ public class Matrix {
 	 * 
 	 */
 
-	public void 
-
-
-
-
-	void gaussForm(){
+	 void gaussForm(){
 
 	 }
 
