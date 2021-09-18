@@ -1,17 +1,17 @@
 import java.util.*;
 
-
 public class Matrix {
 
 	// Atribut
 	public double[][] Mat;
-	protected int brs, kol;
+	protected int brs, kol; // banyak baris dan kolom
 
 
 	// Method:
 
 	/* ===CONSTRUCTOR=== */
 	public Matrix(int i, int j) {
+		//mengubah atribut matriks
 		this.brs = i;
 		this.kol = j;
 		
@@ -169,9 +169,9 @@ public class Matrix {
 		return flag;
 	}
 
-	static boolean isPersegi(int i, int j) {
+	public boolean isPersegi() {
 		// Menghasilkan true apabila baris matriks = kolom matriks
-		return (i == j);
+		return (this.brs == this.kol);
 	}
 
 	/*
@@ -187,7 +187,12 @@ public class Matrix {
 	 * 
 	 */
 
-	 void gaussForm(){
+	public void 
+
+
+
+
+	void gaussForm(){
 
 	 }
 
