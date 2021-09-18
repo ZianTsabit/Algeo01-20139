@@ -53,7 +53,7 @@ public class Matrix {
 	}
 
 	int getFirstIndeks(int jmlBrs){
-		/* return indeks klom tidak nol pertama*/
+		/* return indeks kolom tidak nol pertama*/
 		boolean found = false;
 		int i = 0;
 
@@ -138,9 +138,14 @@ public class Matrix {
 	void kurangBaris(int M, int N) {
 		// Mengurang baris ke-M dengan baris ke-N
 		int j;
-
-		for (j = 0; j < this.kol; j++) {
-			this.Mat[M][j] = this.Mat[M][j] - this.Mat[N][j];
+		if (M < 1 || M > this.brs){
+			System.out.println("Masukkan baris 1 tidak valid");
+		}else if(N < 1 || N > this.brs){
+			System.out.println("Masukkan baris 2 tidak valid");
+		}else{
+			for (j = 0; j < this.kol; j++) {
+				this.Mat[M][j] = this.Mat[M][j] - this.Mat[N][j];
+			}
 		}
 	}
 
@@ -215,7 +220,12 @@ public class Matrix {
 	 * 
 	 */
 
-	 void gaussForm(){
+	public void sort
+	
+
+
+
+	void gaussForm(){
 
 	 }
 
