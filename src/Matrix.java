@@ -322,7 +322,6 @@ public class Matrix {
 	//fungsi untuk membuat matriks menjadi bentuk matriks echelon 
 	public int MakeRowEchelon(double Mat[][]){
 
-
 		for (int i = 0; i < this.brs; i++){
 
 			//Inisialisasi nilai maksimum dan index untuk pivoting
@@ -337,14 +336,26 @@ public class Matrix {
 				}
 			}
 
+			//Mengecek apakah matriks singular
+			if (Mat[i][IdxMax] == 0){
+				return i; //Matriks singular
+			}
 
+			//Tukar baris nilai terbesar dengan baris saat ini
+			if (IdxMax != i){
+				tukarBaris(i, IdxMax);
+			}
 
-
-
+			for (int j = i + 1; j < this.brs;j++){
+				
+				double f = Mat[j][i] / Mat[i][i];
+				
+				for (int k = j + 1;k <= this.brs;k++){
+					Mat[j][k] -= Mat[i][k] * f;
+				}
+				Mat[j][i] = 0;
+			}
 		}
-
-
-
 		return -1;
 	}
 
