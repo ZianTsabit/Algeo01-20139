@@ -252,34 +252,53 @@ public class Matrix {
 	 * 
 	 */
 
-	double determinanKofaktor() {
-		double det=0;
-		int i,j,k;
-		Matrix mr = new Matrix((this.brs-1),(this.kol-1));
-		
+	double determinan() {
+		int i, j, u;
+		int total_kali;
+		double det;
+		double kali, sum;
+
 		if (this.brs==2 && this.kol==2) {
 			det = (this.Mat[0][0]*this.Mat[1][1]) - (this.Mat[0][1]*this.Mat[1][0]);
-			return det;
-		}else{
-			for (k=0; k < this.kol; k++){
-				for (i=0+1; i< this.brs; i++){
-					for (j=0; j<this.kol; j++){
-						if(j>k){
-							mr.Mat[i-1][j-1] = mr.Mat[i][j];
-						} else{
-							mr.Mat[i-1][j] = mr.Mat[i][j];
-						}
+		} else {
+			det = 0;
+			for (j = 0; j < this.kol; j++) {
+				i = 0;
+				u = j;
+				kali = 1;
+				total_kali = 0;
+				while (total_kali < this.kol) {
+					kali = kali * this.Mat[i][u];
+					i++;
+					u++;
+					if (u == this.kol) {
+						u -= this.kol;
 					}
+					total_kali++;
 				}
-				if (k%2==0){
-					det+= this.Mat[0][k]*mr.determinanKofaktor();
-				} else{
-					det-= this.Mat[0][k]*mr.determinanKofaktor();
-				}
+				det += kali;
 			}
-			return det;
-		}	
+
+			for (j = this.kol - 1; j >= 0; j--) {
+				i = 0;
+				u = j;
+				kali = 1;
+				total_kali = 0;
+				while (total_kali < this.kol) {
+					kali = kali * this.Mat[i][u];
+					i++;
+					u--;
+					if (u == -1) {
+						u += this.kol;
+					}
+					total_kali++;
+				}
+				det -= kali;
+			}
+		}
+		return det;
 	}
+
 	public void sortMatriks(){
 		int i, j;
 		
