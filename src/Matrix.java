@@ -82,7 +82,6 @@ public class Matrix {
 
 		for (i = 0; i < this.brs; i++) {
 			for (j = 0; j < this.kol; j++) {
-				System.out.print("Nilai baris ke-" + i + " kolom ke-" + j + ": ");
 				this.Mat[i][j] = in.nextInt();
 			}
 		}
@@ -178,6 +177,40 @@ public class Matrix {
 		}
 	}
 
+	void reduceMatriks(double M[][], int i, int j) {
+		// Membuat matriks tanpa memasukkan baris ke-i dan kolom ke-j
+		int u, v;
+		int m, n;
+
+		u = 0;
+		m = 0;
+		while (m < this.brs) {
+			if (u == i) {
+				m += 1;
+			} 
+			for (v = 0; v < this.kol; v++) {
+				M[u][v] = this.Mat[m][v];
+			}
+			u += 1;
+			m += 1;
+		}
+
+		v = 0;
+		n = 0;
+		while (n < this.kol) {
+			if (v == j) {
+				n += 1;
+			} 
+			for (u = 0; u < this.kol; u++) {
+				M[u][v] = this.Mat[u][n];
+			}
+			v += 1;
+			n += 1;
+		}
+	}
+
+	
+
 	/* VALIDITAS */
 	boolean isZero(int i, int j) {
 		// Menghasilkan true apabila baris ke-i kolom ke-j dari matriks M bernilai 0
@@ -220,6 +253,8 @@ public class Matrix {
 	 * 
 	 */
 
+	void d() {
+	}
 	public void sortMatriks(){
 
 	}
