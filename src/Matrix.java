@@ -79,7 +79,6 @@ public class Matrix {
 		// Mengisi elemen matriks M[i,j] dengan input pengguna
 		Scanner in = new Scanner(System.in);
 		int i, j;
-
 		for (i = 0; i < this.brs; i++) {
 			for (j = 0; j < this.kol; j++) {
 				this.Mat[i][j] = in.nextInt();
@@ -253,7 +252,33 @@ public class Matrix {
 	 * 
 	 */
 
-	void d() {
+	double determinanKofaktor() {
+		double det=0;
+		int i,j,k;
+		Matrix mr = new Matrix((this.brs-1),(this.kol-1));
+		
+		if (this.brs==2 && this.kol==2) {
+			det = (this.Mat[0][0]*this.Mat[1][1]) - (this.Mat[0][1]*this.Mat[1][0]);
+			return det;
+		}else{
+			for (k=0; k < this.kol; k++){
+				for (i=0+1; i< this.brs; i++){
+					for (j=0; j<this.kol; j++){
+						if(j>k){
+							mr.Mat[i-1][j-1] = mr.Mat[i][j];
+						} else{
+							mr.Mat[i-1][j] = mr.Mat[i][j];
+						}
+					}
+				}
+				if (k%2==0){
+					det+= this.Mat[0][k]*mr.determinanKofaktor();
+				} else{
+					det-= this.Mat[0][k]*mr.determinanKofaktor();
+				}
+			}
+			return det;
+		}	
 	}
 	public void sortMatriks(){
 		int i, j;

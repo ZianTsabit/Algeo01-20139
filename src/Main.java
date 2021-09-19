@@ -53,7 +53,7 @@ public class Main{
     }
     public static void SubMenuDet() {
         int submenu;
-        Matrix mat = new Matrix(3,3);
+        Matrix mat = new Matrix(2,2); // inisiasi awal matriks 3x3
         Scanner input = new Scanner(System.in);
         System.out.println("Metode yang digunakan: ");
         System.out.println("1. Metode eliminasi Gauss ");
@@ -70,13 +70,13 @@ public class Main{
             jenis = input.nextInt();
 
             if(jenis == 1) {
-                // // baca matriks
-                // mat.bacaMatriks();
-                // // keluarkan hasil determinan
-                // double hasil;
-                // hasil = mat.determinanKofaktor();
-                // System.out.print("Nilai determinan dari matriks tersebut adalah ");
-                // System.out.println(hasil);
+                // baca matriks
+                mat.bacaMatriks();
+                // keluarkan hasil determinan
+                double hasil;
+                hasil = mat.determinanKofaktor();
+                System.out.print("Nilai determinan dari matriks tersebut adalah ");
+                System.out.println(hasil);
             }
         }
         
