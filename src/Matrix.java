@@ -256,12 +256,24 @@ public class Matrix {
 	void d() {
 	}
 	public void sortMatriks(){
+		int i, j;
+		
+		
+		if (this.brs > 1){
+			for (i = 1; i < this.brs;i++){
+				int brsMax = i;
+				for (j = i + 1;j <= this.brs;j++){
+					int tempMaks = this.getFirstIndeks(j);
+					if (tempMaks < this.getFirstIndeks(brsMax)){
+						brsMax = j;
+					}
+				}
+				this.tukarBaris(i, brsMax);
+			}
+		}
 
 	}
 	
-
-
-
 	void gaussForm(){
 
 	}
