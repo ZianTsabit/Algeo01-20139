@@ -318,6 +318,37 @@ public class Matrix {
 
 	}
 	
+
+	//fungsi untuk membuat matriks menjadi bentuk matriks echelon 
+	public int MakeRowEchelon(double Mat[][]){
+
+
+		for (int i = 0; i < this.brs; i++){
+
+			//Inisialisasi nilai maksimum dan index untuk pivoting
+			int IdxMax = i; 
+			int ValMax = (int)Mat[IdxMax][i];
+
+			//Mencari nilai terbesar yang cocok untuk dijadikan pivot
+			for (int j = i + 1;j < this.brs;j++){
+				if (Math.abs(Mat[j][i]) > ValMax){
+					ValMax = (int)Mat[j][i];
+					IdxMax = j;
+				}
+			}
+
+
+
+
+
+		}
+
+
+
+		return -1;
+	}
+
+
 	void gaussForm(){
 
 	}
