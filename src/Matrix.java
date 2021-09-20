@@ -55,9 +55,9 @@ public class Matrix {
 	int getFirstIndeks(int jmlBrs){
 		/* return indeks kolom tidak nol pertama*/
 		boolean found = false;
-		int i = 0;
+		int i = 1;
 
-		while((i < this.kol) && !found){
+		while((i <= this.kol) && !found){
 			if (this.Mat[jmlBrs][i] != 0){
 				found = true;
 			}else{
