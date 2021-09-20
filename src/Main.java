@@ -7,36 +7,47 @@ public class Main{
     }
 
     public static void MainMenu() {
-        int menu;
-        Scanner input = new Scanner(System.in);
-        
-        System.out.println("MENU");
-        System.out.println("1. Sistem Persamaan Linier");
-        System.out.println("2. Determinan");
-        System.out.println("3. Matriks balikan");
-        System.out.println("4. Interpolasi Polinom");
-        System.out.println("5. Regresi linier berganda");
-        System.out.println("6. Keluar");
-        System.out.print("Masukkan menu (1-6): ");
-        menu = input.nextInt();
+        try{
+            int menu;
+            Scanner input = new Scanner(System.in);
+            System.out.println("================================");
+            System.out.println("MENU");
+            System.out.println("1. Sistem Persamaan Linier");
+            System.out.println("2. Determinan");
+            System.out.println("3. Matriks balikan");
+            System.out.println("4. Interpolasi Polinom");
+            System.out.println("5. Regresi linier berganda");
+            System.out.println("6. Keluar");
+            System.out.println("================================");
+            System.out.print("Masukkan menu (1-6): ");
+            menu = input.nextInt();
 
-        if (menu == 1) {
-            SubMenuSPL();
-        } else if (menu == 2) {
-            SubMenuDet();
-        } else if (menu == 3) {
-            SubMenuInv();
-        } else if (menu == 4){
-            SubMenuIntpol();
-        } else if (menu == 5){
-            SubMenuRLB();
-        } else if (menu == 6){
-            System.exit(0);
-        } else {
+            switch (menu) {
+                case 1:
+                    SubMenuSPL();
+                    break;
+                case 2:
+                    SubMenuDet();
+                    break;
+                case 3:
+                    SubMenuInv();
+                    break;
+                case 4:
+                    SubMenuIntpol();
+                    break;
+                case 5:
+                    SubMenuRLB();
+                    break;
+                case 6:
+                    System.exit(0);
+                default:
+                    System.out.println("Masukkan menu tidak valid, ulangi kembali.");
+                    MainMenu();
+            }
+        } catch (Exception e) {
             System.out.println("Masukkan menu tidak valid, ulangi kembali.");
             MainMenu();
         }
-
     }
 
     public static void SubMenuSPL() {
@@ -52,34 +63,111 @@ public class Main{
 
     }
     public static void SubMenuDet() {
-        int submenu;
-        Matrix mat = new Matrix(2,2); // inisiasi awal matriks 3x3
-        Scanner input = new Scanner(System.in);
-        System.out.println("Metode yang digunakan: ");
-        System.out.println("1. Metode eliminasi Gauss ");
-        System.out.println("2. Metode ekspansi kofaktor ");
-        System.out.print("Masukkan metode yang digunakan: ");
-        submenu = input.nextInt();
-
-        if (submenu==1 || submenu==2) {
-            int jenis;
-            System.out.println("Jenis Masukan: ");
-            System.out.println("1. Masukan dari keyboard");
-            System.out.println("2. Masukan dari file text");
-            System.out.print("Masukkan jenis masukan: ");
-            jenis = input.nextInt();
-
-            if(jenis == 1) {
-                // baca matriks
-                mat.bacaMatriks();
-                // keluarkan hasil determinan
-                double hasil;
-                hasil = mat.determinanKofaktor();
-                System.out.print("Nilai determinan dari matriks tersebut adalah ");
-                System.out.println(hasil);
+        try{
+            int metode, jenis, ukuran;
+            double hasil = 0;
+            metode = 0;
+            jenis = 0;
+            ukuran = 0;
+            hasil = 0;
+            String namafile = null;
+            Matrix mat = new Matrix(0,0);
+            Scanner input = new Scanner(System.in);
+            
+            System.out.println("================================");
+            System.out.println("Menu yang dipilih: 2. Determinan");
+            System.out.println("================================");
+            System.out.println("Metode yang akan digunakan: ");
+            System.out.println("1. Metode eliminasi Gauss ");
+            System.out.println("2. Metode ekspansi kofaktor ");
+            System.out.println("3. Kembali ke menu utama");
+            System.out.println("================================");
+            System.out.print("Masukkan metode yang digunakan: ");
+            metode = input.nextInt();
+            
+            switch (metode) {
+                case 1:
+                    System.out.println("================================");
+                    System.out.println("Metode yang dipilih: 1. Metode eliminasi Gauss");
+                    System.out.println("================================");
+                    System.out.println("Jenis Masukan: ");
+                    System.out.println("1. Masukan dari keyboard");
+                    System.out.println("2. Masukan dari file text");
+                    System.out.println("3. Kembali ke menu metode");
+                    System.out.println("================================");
+                    System.out.print("Masukkan jenis masukan: ");
+                    jenis = input.nextInt();
+                    break;
+                case 2:
+                    System.out.println("================================");
+                    System.out.println("Metode yang dipilih: 2. Metode ekspansi kofaktor");
+                    System.out.println("================================");
+                    System.out.println("Jenis Masukan: ");
+                    System.out.println("1. Masukan dari keyboard");
+                    System.out.println("2. Masukan dari file text");
+                    System.out.println("3. Kembali ke menu metode");
+                    System.out.println("================================");
+                    System.out.print("Masukkan jenis masukan: ");
+                    jenis = input.nextInt();
+                    break;
+                case 3:
+                    MainMenu();
+                default:
+                    System.out.println("Masukan metode tidak valid. Ulang kembali masukan metode.");
+                    SubMenuDet();
             }
+
+            switch (jenis) {
+                case 1:
+                    System.out.println("================================");
+                    System.out.println("Jenis masukan yang dipilih: 1. Masukan dari keyboard");
+                    System.out.println("PERHATIAN: Matriks yang diterima hanya matriks persegi");
+                    System.out.println("================================");
+                    System.out.print("Masukkan ukuran matriks persegi (MxM) M: ");
+                    ukuran = input.nextInt();
+                    // inisiasi ukuran matriks persegi
+                    mat = new Matrix(ukuran,ukuran);
+                    System.out.println("Masukkan matriks: ");
+                    // membaca matriks
+                    mat.bacaMatriks();
+                    System.out.println("Matriks berhasil terbaca.");
+                    break;
+                case 2:
+                    System.out.println("================================");
+                    System.out.println("Jenis masukan yang dipilih: 1. Masukan dari file txt");
+                    System.out.println("PERHATIAN: Matriks yang diterima hanya matriks persegi");
+                    System.out.println("================================");
+                    System.out.print("Masukkan nama file diikuti oleh ekstensi .txt: ");
+                    namafile = input.next();
+                    mat.bacaFileMatriks(namafile);
+                    System.out.println("File "+namafile+" berhasil diproses.");
+                    break;
+                case 3:
+                    SubMenuDet();
+                default:
+                    System.out.println("Masukan jenis masukan tidak valid. Ulang kembali dari awal.");
+                    SubMenuDet();
+            }
+
+            System.out.println("Matriks yang terbaca: ");
+            mat.tulisMatriks();
+
+            if (metode==1 && (jenis==1 || jenis==2) ){
+                // mencari nilai determinan menggunakan eliminasi Gauss
+            } else if (metode==2 && (jenis==1 || jenis==2) ) {
+                // mencari nilai determinan menggunakan ekspansi kofaktor
+                System.out.println("================================");
+                System.out.print("Dengan menggunakan ekspansi kofaktor, didapatkan nilai determinan matriks tersebut adalah: ");
+                hasil = mat.determinanKofaktor();
+                System.out.println(hasil);
+                System.out.println("================================");
+                // Menyimpan file
+            }
+        } catch(Exception e){ 
+            System.out.println("Masukan tidak valid. Ulang kembali masukkan metode.");
+            SubMenuDet();
+
         }
-        
     }
     public static void SubMenuInv() {
         

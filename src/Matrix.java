@@ -1,5 +1,5 @@
 import java.util.*;
-
+import java.io.*;
 
 public class Matrix {
 
@@ -85,7 +85,52 @@ public class Matrix {
 			}
 		}
 	}
+	public void bacaFileMatriks (String FileName) {
+		// Membaca file eksternal kemudian dikonversi kedalam tipe Matrix
+		try{
+			String dir = "./test/" + FileName;
+			File file = new File(dir);
+			int i,j;
+			int Nbrs = 0 , Nkol = 0;
+			Scanner input = new Scanner(file);
 
+			// Menghitung jumlah baris matriks
+			while(input.hasNextLine()) {
+				Nbrs++;
+				input.nextLine();
+			}
+			input.close();
+
+			input = new Scanner(file);
+			Scanner num = new Scanner(input.nextLine());
+
+			// Menghitung jumlah kolom matriks
+			while (num.hasNextDouble()){
+				Nkol++;
+				num.nextDouble();
+			}
+			num.close();
+			input.close();
+
+			input = new Scanner(file);
+
+			this.brs = Nbrs;
+			this.kol = Nkol;
+			// Re-assign ukuran matriks
+			Mat = new double[Nbrs][Nkol];
+
+			// Pengisian nilai yang terbaca pada file ke dalam Matrix
+			for (i=0; i<Nbrs;i++){
+				for (j=0; j < Nkol; j++){
+					this.Mat[i][j] = input.nextDouble();
+				}
+			}
+			input.close();
+
+		} catch (FileNotFoundException e) {
+			System.out.println("File tidak ditemukan. Periksa kembali nama file.");
+		}
+	}	
 	void tulisMatriks() {
 		// Mencetak elemen matriks berukuran M x N ke layar
 		int i, j;
