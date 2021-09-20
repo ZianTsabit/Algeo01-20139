@@ -21,7 +21,7 @@ class DriverMatrix {
 
 	//double M1[][];
 	//M1 = new double[Bar][Kol];
-	M.MakeEchelon();
+	M.MakeReduceEchelon();
 	M.tulisMatriks();
 	//for (int i =0; i < Bar-1; i++) {
 		//for (int j = 0; j < Kol-1; j++) {

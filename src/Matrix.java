@@ -406,8 +406,48 @@ public class Matrix {
 	//fungsi untuk membuat matriks menjadi bentuk matriks echelon
 
 	void MakeReduceEchelon(){
+		int IdxFirst = 0;
+		int k ;
 
-		
+		for (int i = 0; i < this.brs; i++){
+			
+			if (this.kol <= IdxFirst){
+				return;
+			}
+
+			k = i;
+
+			while (this.Mat[k][IdxFirst] == 0){
+				k++;
+
+				if (k == this.brs){
+					k = i;
+					IdxFirst++;
+
+					if (IdxFirst == this.kol){
+						return;
+					}
+				}
+			}
+
+			if (k != i){
+				tukarBaris(k, i);
+			}
+
+			if (this.Mat[i][IdxFirst] != 0){
+				this.kaliBaris(i, (1/this.Mat[i][IdxFirst]));
+			}
+
+			for (int j = 0; j < this.brs; j++){
+				if (j != i){
+					double FirstElmt = this.Mat[j][IdxFirst];
+					double constant = (-1) * FirstElmt/this.Mat[i][IdxFirst];
+					this.tambahBaris(j, i, constant);
+				}
+			}
+
+			IdxFirst++;
+		}
 	}
 
 	/*
