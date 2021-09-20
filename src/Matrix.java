@@ -122,9 +122,9 @@ public class Matrix {
 		// Menambah baris ke-M dengan baris ke-N
 		int j;
 
-		if (M < 1 || M > this.brs){
+		if (M < 0 || M > this.brs){
 			System.out.println("Masukkan baris 1 tidak valid");
-		}else if(N < 1 || N > this.brs){
+		}else if(N < 0 || N > this.brs){
 			System.out.println("Masukkan baris 2 tidak valid");
 		}else{
 			for (j = 0; j < this.kol; j++) {
@@ -149,7 +149,7 @@ public class Matrix {
 
 	void kaliBaris(int i, double val) {
 		// Mengalikan baris ke-i dengan val
-		if (i < 1 || i > this.brs){
+		if (i < 0 || i > this.brs){
 			System.out.println("Masukkan baris tidak valid");
 		}else{
 			if (val == 0){
@@ -298,7 +298,7 @@ public class Matrix {
 		if (this.brs > 1){
 			for (i = 1; i < this.brs;i++){
 				int brsMax = i;
-				for (j = i + 1;j <= this.brs;j++){
+				for (j = i + 1;j < this.brs;j++){
 					int tempMaks = this.getFirstIndeks(j);
 					if (tempMaks < this.getFirstIndeks(brsMax)){
 						brsMax = j;
@@ -354,11 +354,11 @@ public class Matrix {
 
 	public void gaussForm(){
 		this.sortMatriks();
-		for (int i = 1; i <= this.brs; i++){
+		for (int i = 0; i < this.brs; i++){
 			if(!this.isBarisZero(i)){
 				int IdxFirst = this.getFirstIndeks(i);
 				double firstCoefisien = this.Mat[i][IdxFirst];
-				for (int j = i + 1; j <= this.brs;j++){
+				for (int j = i + 1; j < this.brs;j++){
 					if (!this.isBarisZero(j)){
 						double k = (-1) * this.Mat[j][IdxFirst] / firstCoefisien;
 						this.tambahBaris(j, i, k); 
@@ -367,7 +367,7 @@ public class Matrix {
 				}
 			}
 		}
-		for (int i = 1; i <= this.brs; i++){
+		for (int i = 0; i < this.brs; i++){
 			if (!this.isBarisZero(i)){
 				int IdxBrs = this.getFirstIndeks(i);
 				double firstCoefisien = this.Mat[i][IdxBrs];

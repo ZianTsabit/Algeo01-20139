@@ -19,18 +19,19 @@ class DriverMatrix {
 	// menulis matriks
 	M.tulisMatriks();
 
-	double M1[][];
-	M1 = new double[Bar][Kol];
+	//double M1[][];
+	//M1 = new double[Bar][Kol];
 	M.gaussForm();
 	M.tulisMatriks();
-	for (int i =0; i < Bar-1; i++) {
-		for (int j = 0; j < Kol-1; j++) {
-			System.out.print(M1[i][j]+ " ");
-		}
-		System.out.println();
-	}
+	//for (int i =0; i < Bar-1; i++) {
+		//for (int j = 0; j < Kol-1; j++) {
+			//System.out.print(M1[i][j]+ " ");
+		//}
+		//System.out.println();
+	//}
 	
-	double det = M.determinanSarrus(M1,Bar-1,Kol-1);
-	System.out.print(det);
-    }
+	//double det = M.determinanSarrus(M1,Bar-1,Kol-1);
+	//System.out.print(det);
+    //} 
+}
 }
