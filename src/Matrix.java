@@ -104,9 +104,9 @@ public class Matrix {
 		int j; 
 		double temp;
 
-		if (M < 1 || M > this.brs){
+		if (M < 0 || M > this.brs){
 			System.out.println("Masukkan baris 1 tidak valid");
-		}else if (N < 1 || N > this.brs){
+		}else if (N < 0 || N > this.brs){
 			System.out.println("Masukkan baris 2 tidak valid");
 
 		}else{
@@ -118,7 +118,7 @@ public class Matrix {
 		}	
 	}
 
-	public void tambahBaris(int M, int N) {
+	public void tambahBaris(int M, int N, double k) {
 		// Menambah baris ke-M dengan baris ke-N
 		int j;
 
@@ -128,7 +128,7 @@ public class Matrix {
 			System.out.println("Masukkan baris 2 tidak valid");
 		}else{
 			for (j = 0; j < this.kol; j++) {
-				this.Mat[M][j] = this.Mat[M][j] + this.Mat[N][j];
+				this.Mat[M][j] += (this.Mat[N][j] * k);
 			}
 		}
 	}
@@ -309,7 +309,7 @@ public class Matrix {
 	void Kofaktor() {
 		
 	}
-	public void sortMatriks(){
+	void sortMatriks(){
 		int i, j;
 		
 		
@@ -330,7 +330,7 @@ public class Matrix {
 	
 
 	//fungsi untuk membuat matriks menjadi bentuk matriks echelon 
-	public int MakeRowEchelon(double Mat[][]){
+	int MakeRowEchelon(double Mat[][]){
 
 		for (int i = 0; i < this.brs; i++){
 
@@ -370,8 +370,28 @@ public class Matrix {
 	}
 
 
-	void gaussForm(){
-
+	public void gaussForm(){
+		this.sortMatriks();
+		for (int i = 1; i <= this.brs; i++){
+			if(!this.isBarisZero(i)){
+				int IdxFirst = this.getFirstIndeks(i);
+				double firstCoefisien = this.Mat[i][IdxFirst];
+				for (int j = i + 1; j <= this.brs;j++){
+					if (!this.isBarisZero(j)){
+						double k = (-1) * this.Mat[j][IdxFirst] / firstCoefisien;
+						this.tambahBaris(j, i, k); 
+					}
+					this.Mat[j][IdxFirst] = 0;
+				}
+			}
+		}
+		for (int i = 1; i <= this.brs; i++){
+			if (!this.isBarisZero(i)){
+				int IdxBrs = this.getFirstIndeks(i);
+				double firstCoefisien = this.Mat[i][IdxBrs];
+				this.kaliBaris(i, (1 / firstCoefisien));
+			}
+		}
 	}
 
 
