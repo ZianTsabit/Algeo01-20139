@@ -304,6 +304,21 @@ public class Matrix {
 	 * 
 	 * 
 	 */
+
+	void CopyMatrix(Matrix M1, Matrix M2){
+		
+
+	}
+
+
+
+
+	
+
+
+
+
+	
 	public double determinanKofaktor() {
 		double det=0;
 		int i,j,k,x,y;
