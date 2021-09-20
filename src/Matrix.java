@@ -364,43 +364,43 @@ public class Matrix {
 	
 
 	//fungsi untuk membuat matriks menjadi bentuk matriks echelon 
-	int MakeRowEchelon(double Mat[][]){
+	void MakeEchelon(){
+
+		int IdxFirst = 0;
+		int k;
+
+		double ElmtFirst;
 
 		for (int i = 0; i < this.brs; i++){
+			k = i;
+			ElmtFirst = this.Mat[k][IdxFirst];
 
-			//Inisialisasi nilai maksimum dan index untuk pivoting
-			int IdxMax = i; 
-			int ValMax = (int)Mat[IdxMax][i];
-
-			//Mencari nilai terbesar yang cocok untuk dijadikan pivot
-			for (int j = i + 1;j < this.brs;j++){
-				if (Math.abs(Mat[j][i]) > ValMax){
-					ValMax = (int)Mat[j][i];
-					IdxMax = j;
+			while (ElmtFirst == 0){
+				k++;
+				if (k == this.brs){
+					k = i;
+					IdxFirst++;
+					if (IdxFirst == this.kol){
+						return;
+					}
 				}
+				ElmtFirst = this.Mat[k][IdxFirst];
+			}
+			if (k != i){
+				tukarBaris(k, i);
 			}
 
-			//Mengecek apakah matriks singular
-			if (Mat[i][IdxMax] == 0){
-				return i; //Matriks singular
+			if (this.Mat[i][IdxFirst] != 0){
+				this.kaliBaris(i, (1/(this.Mat[i][IdxFirst])));
 			}
 
-			//Tukar baris nilai terbesar dengan baris saat ini
-			if (IdxMax != i){
-				tukarBaris(i, IdxMax);
+			for (int j = i + 1; j < this.brs; j++){
+				double FirstElmt = this.Mat[j][i];
+				double constant = (-1) * FirstElmt/this.Mat[i][IdxFirst];
+				this.tambahBaris(j, i, constant); 
 			}
-
-			for (int j = i + 1; j < this.brs;j++){
-				
-				double f = Mat[j][i] / Mat[i][i];
-				
-				for (int k = j + 1;k <= this.brs;k++){
-					Mat[j][k] -= Mat[i][k] * f;
-				}
-				Mat[j][i] = 0;
-			}
+			IdxFirst++;
 		}
-		return -1;
 	}
 
 
