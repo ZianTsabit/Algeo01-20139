@@ -304,35 +304,42 @@ public class Matrix {
 	 * 
 	 * 
 	 */
-
-	double determinanKofaktor() {
+	public double determinanKofaktor() {
 		double det=0;
-		int i,j,k;
+		int i,j,k,x,y;
 		Matrix mr = new Matrix((this.brs-1),(this.kol-1));
 
-		if (this.brs==2 && this.kol==2) {
+		if (this.brs==2 && this.kol==2) { // Basis
+			
 			det = (this.Mat[0][0]*this.Mat[1][1]) - (this.Mat[0][1]*this.Mat[1][0]);
 			return det;
-		}else{
-			for (k=0; k < this.kol; k++){
-				for (i=0+1; i< this.brs; i++){
-					for (j=0; j<this.kol; j++){
-						if(j>k){
-							mr.Mat[i-1][j-1] = mr.Mat[i][j];
-						} else{
-							mr.Mat[i-1][j] = mr.Mat[i][j];
+		} else { // Rekurens
+			for (i = 0; i < this.kol ; i++) {
+				if (this.Mat[0][i] != 0) {
+					y = 0;
+					for (j = 0; j < this.brs ; j++) {
+						x = 0;
+						for (k = 0; k < this.kol ; k++) {
+							if (k != i) { // Membentuk kofaktor matriks
+							mr.Mat[y][x] = this.Mat[j][k];
+							x++;
+							}
+						}
+						if (j != 0) {
+							y++;
 						}
 					}
-				}
-				if (k%2==0){
-					det+= this.Mat[0][k]*mr.determinanKofaktor();
-				} else{
-					det-= this.Mat[0][k]*mr.determinanKofaktor();
+					if (i % 2 == 0) { // Menentukan tanda + dan - pada koefisien pengali kofaktor
+					  det += this.Mat[0][i] * mr.determinanKofaktor();
+					} else {
+					  det -= this.Mat[0][i] * mr.determinanKofaktor();
+					}
 				}
 			}
 			return det;
 		}	
 	}
+	
 	void Kofaktor() {
 		
 	}
