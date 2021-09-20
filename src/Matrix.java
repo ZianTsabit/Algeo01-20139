@@ -403,6 +403,13 @@ public class Matrix {
 		}
 	}
 
+	//fungsi untuk membuat matriks menjadi bentuk matriks echelon
+
+	void MakeReduceEchelon(){
+
+		
+	}
+
 	/*
 	public void gaussForm() {
 		this.sortMatriks();
