@@ -180,6 +180,8 @@ public class Matrix {
 		// Membuat matriks tanpa memasukkan baris ke-i dan kolom ke-j
 		int u, v;
 		int m, n;
+		double T[][];
+		T = new double[this.brs][this.kol];
 
 		u = 0;
 		m = 0;
@@ -188,7 +190,7 @@ public class Matrix {
 				m += 1;
 			} 
 			for (v = 0; v < this.kol; v++) {
-				M[u][v] = this.Mat[m][v];
+				T[u][v] = this.Mat[m][v];
 			}
 			u += 1;
 			m += 1;
@@ -200,11 +202,17 @@ public class Matrix {
 			if (v == j) {
 				n += 1;
 			} 
-			for (u = 0; u < this.kol; u++) {
-				M[u][v] = this.Mat[u][n];
+			for (u = 0; u < this.brs; u++) {
+				T[u][v] = T[u][n];
 			}
 			v += 1;
 			n += 1;
+		}
+		
+		for (i = 0; i < this.brs-1; i++) {
+			for (j = 0; j < this.kol-1; j++) {
+				M[i][j] = T[i][j];
+			}
 		}
 	}
 
@@ -252,44 +260,44 @@ public class Matrix {
 	 * 
 	 */
 
-	double determinan() {
+	double determinanSarrus(double[][] M,int brs, int kol) {
 		int i, j, u;
 		int total_kali;
 		double det;
 		double kali, sum;
 
-		if (this.brs==2 && this.kol==2) {
-			det = (this.Mat[0][0]*this.Mat[1][1]) - (this.Mat[0][1]*this.Mat[1][0]);
+		if (brs==2 && kol==2) {
+			det = (M[0][0]*M[1][1]) - (M[0][1]*M[1][0]);
 		} else {
 			det = 0;
-			for (j = 0; j < this.kol; j++) {
+			for (j = 0; j < kol; j++) {
 				i = 0;
 				u = j;
 				kali = 1;
 				total_kali = 0;
-				while (total_kali < this.kol) {
-					kali = kali * this.Mat[i][u];
+				while (total_kali < kol) {
+					kali = kali * M[i][u];
 					i++;
 					u++;
-					if (u == this.kol) {
-						u -= this.kol;
+					if (u == kol) {
+						u -= kol;
 					}
 					total_kali++;
 				}
 				det += kali;
 			}
 
-			for (j = this.kol - 1; j >= 0; j--) {
+			for (j = kol - 1; j >= 0; j--) {
 				i = 0;
 				u = j;
 				kali = 1;
 				total_kali = 0;
-				while (total_kali < this.kol) {
-					kali = kali * this.Mat[i][u];
+				while (total_kali < kol) {
+					kali = kali * M[i][u];
 					i++;
 					u--;
 					if (u == -1) {
-						u += this.kol;
+						u += kol;
 					}
 					total_kali++;
 				}
@@ -298,7 +306,9 @@ public class Matrix {
 		}
 		return det;
 	}
-
+	void Kofaktor() {
+		
+	}
 	public void sortMatriks(){
 		int i, j;
 		
