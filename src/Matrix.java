@@ -497,13 +497,17 @@ public class Matrix {
 		return jmlSolusi;
 	}
 
+	public void MatrixToParam(){
+
+	}
+
 	public void gaussEliminasi() {
 		
 	}
 
 	public void gaussJordanEliminasi(){
 
-		
+
 	}
 	
 
