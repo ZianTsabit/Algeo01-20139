@@ -382,18 +382,13 @@ public class Matrix {
 		double[][] M;
 		M = new double[this.brs-1][this.kol-1];
 		Matrix M1 = new Matrix(this.brs-1,this.kol-1);
-		sizeM1 = this.brs-1
 		Matrix M2 = new Matrix(this.brs,this.kol);
 
 		for (i = 0; i < this.brs; i++) {
 			for (j = 0; j < this.kol; j++) {
 				this.reduceMatriks(M,i,j);
 				M1.copyMatriks(M);
-				if (sizeM1 == 2) {
-					M2.Mat[i][j] = M1.determinanKofaktor();
-				} else {
-					
-				}
+				M2.Mat[i][j] = M1.determinanKofaktor();
 
 				if((i+j)%2 != 0) {
 					M2.Mat[i][j] = -(M2.Mat[i][j]);
