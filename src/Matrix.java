@@ -554,12 +554,12 @@ public class Matrix {
 
 		int i = 0;
 
-		if ((this.Mat[this.brs-1][this.kol]) != 0.0d){
+		if ((this.Mat[this.brs-1][this.kol-1]) != 0.0d){
 			isNol1 = false;
 		}
 
 		while ((i < this.kol-1) && isNol2){
-			if ((this.Mat[this.brs-1][this.kol]) != 0.0d){
+			if ((this.Mat[this.brs-1][i]) != 0.0d){
 				isNol2 = false;
 			}
 			i++;

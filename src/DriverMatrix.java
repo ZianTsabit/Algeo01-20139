@@ -21,8 +21,10 @@ class DriverMatrix {
 
 	//double M1[][];
 	//M1 = new double[Bar][Kol];
-	M.MakeReduceEchelon();
-	M.tulisMatriks();
+	
+	HashMap<String, String> Solusi = new HashMap<>();
+	Solusi = Matrix.gaussJordanEliminasi(M);
+	System.out.println(Matrix.DisplaySolusi(Solusi));
 	//for (int i =0; i < Bar-1; i++) {
 		//for (int j = 0; j < Kol-1; j++) {
 			//System.out.print(M1[i][j]+ " ");
