@@ -210,13 +210,21 @@ public class Matrix {
 		}
 	}
 
-	void Transpose(double Mtrx[][]) {
+	void Transpose() {
 		// Menghasilkan matriks transpose
 		int i, j;
+		double[][] M;
+		M = new double[this.brs][this.kol];
 
 		for (i = 0; i < this.brs; i++) {
 			for (j = 0; j < this.kol; j++) {
-				Mtrx[j][i] = this.Mat[i][j];
+				M[j][i] = this.Mat[i][j];
+			}
+		}
+
+		for (i = 0; i < this.brs; i++) {
+			for (j = 0; j < this.kol; j++) {
+				this.Mat[i][j] = M[i][j];
 			}
 		}
 	}
@@ -233,9 +241,11 @@ public class Matrix {
 		while (m < this.brs) {
 			if (u == i) {
 				m += 1;
-			} 
-			for (v = 0; v < this.kol; v++) {
-				T[u][v] = this.Mat[m][v];
+			}
+			if (m != this.brs) { 
+				for (v = 0; v < this.kol; v++) {
+					T[u][v] = this.Mat[m][v];
+				}
 			}
 			u += 1;
 			m += 1;
@@ -247,8 +257,10 @@ public class Matrix {
 			if (v == j) {
 				n += 1;
 			} 
-			for (u = 0; u < this.brs; u++) {
-				T[u][v] = T[u][n];
+			if (n != this.kol) {
+				for (u = 0; u < this.brs; u++) {
+					T[u][v] = T[u][n];
+				}
 			}
 			v += 1;
 			n += 1;
@@ -257,6 +269,16 @@ public class Matrix {
 		for (i = 0; i < this.brs-1; i++) {
 			for (j = 0; j < this.kol-1; j++) {
 				M[i][j] = T[i][j];
+			}
+		}
+	}
+
+	void copyMatriks(double M[][]) {
+		int i,j;
+
+		for (i = 0; i < this.brs; i++) {
+			for (j = 0; j < this.kol; j++) {
+				this.Mat[i][j] = M[i][j];
 			}
 		}
 	}
@@ -356,7 +378,33 @@ public class Matrix {
 	}
 	
 	void Kofaktor() {
-		
+		int i, j;
+		double[][] M;
+		M = new double[this.brs-1][this.kol-1];
+		Matrix M1 = new Matrix(this.brs-1,this.kol-1);
+		sizeM1 = this.brs-1
+		Matrix M2 = new Matrix(this.brs,this.kol);
+
+		for (i = 0; i < this.brs; i++) {
+			for (j = 0; j < this.kol; j++) {
+				this.reduceMatriks(M,i,j);
+				M1.copyMatriks(M);
+				if (sizeM1 == 2) {
+					M2.Mat[i][j] = M1.determinanKofaktor();
+				} else {
+					
+				}
+
+				if((i+j)%2 != 0) {
+					M2.Mat[i][j] = -(M2.Mat[i][j]);
+			}
+		}
+
+		for (i = 0; i < this.brs; i++) {
+			for (j =0; j < this.kol; j++) {
+				this.Mat[i][j] = M2.Mat[i][j];
+			}
+		}
 	}
 	void sortMatriks(){
 		int i, j;
@@ -497,7 +545,51 @@ public class Matrix {
 		return jmlSolusi;
 	}
 
-	public void MatrixToParam(){
+	HashMap<String, String> MatrixToParam(){
+
+		HashMap<String, String> SolusiParametrik = new HashMap<>();
+
+		char VarBebas = 'a'; //variabel bebas pertama
+		int i, j;
+
+		for (j = this.kol-2;j >= 0; j--){
+			boolean AllZero = true;
+
+			for (i = this.brs-1; i >= 0; i--){
+				if (this.Mat[i][j] != 0){
+					AllZero = false;
+					break;
+				}
+			}
+
+			if (AllZero || (this.Mat[i][j] != 0 )){
+				SolusiParametrik.put("x" + (j +1), VarBebas + "");
+				if (VarBebas == 'z'){
+					VarBebas -= 25;
+				} else{
+					VarBebas++;
+				}
+			}
+		}
+
+		int JmlBrsNotZero = 0;
+		i = 0;
+		j = 0;
+		boolean Zero = true;
+
+		while(i < this.brs){
+			Zero = true;
+			while (Zero && j < this.kol){
+				if (this.Mat[i][j] != 0){
+					JmlBrsNotZero++;
+					Zero = false;
+				}
+				j++;
+			}
+			i++;
+		}
+
+
 
 	}
 
