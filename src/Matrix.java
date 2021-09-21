@@ -394,6 +394,7 @@ public class Matrix {
 					M2.Mat[i][j] = -(M2.Mat[i][j]);
 			}
 		}
+	}
 
 		for (i = 0; i < this.brs; i++) {
 			for (j =0; j < this.kol; j++) {
