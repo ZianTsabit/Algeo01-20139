@@ -437,6 +437,23 @@ public class Matrix {
 		}
 	}
 
+	String metodeInvers(double M[][]) {
+		// Menghasilkan perkalian matriks dengan matriks M
+		int i, j, k;
+		double hasil;
+		String str = "";
+
+		this.Invers();
+		for (i = 0; i < this.brs; i++) {
+			hasil = 0;
+			for (k = 0; k < this.kol; k++) {
+				hasil += this.Mat[i][k] * M[k][0];
+			}
+			str += "x" + (i+1) + "=" + (hasil) + " ";
+		}
+		return str;
+	}
+
 	String Cramer(double M[][]) {
 		int i, j;
 		double Mcopy[][];
