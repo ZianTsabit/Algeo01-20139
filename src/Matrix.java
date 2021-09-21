@@ -405,16 +405,17 @@ public class Matrix {
 		this.Kofaktor();
 		this.Transpose();
 	}
-	void Inverse() {
+	void Invers() {
 		int i, j;
 		double[][] M;
-		M = new double[this.brs][this.kol]
+		M = new double[this.brs][this.kol];
+		double det = this.determinanKofaktor();
 
-		if (this.determinanKofaktor != 0) {
-			this.Adjoin()
+		if (det != 0) {
+			this.Adjoin();
 			for (i = 0; i < this.brs; i++) {
 				for (j = 0; j < this.kol; j++) {
-					M[i][j] = this.Mat[i][j]/this.determinanKofaktor;
+					M[i][j] = this.Mat[i][j]/det;
 				}
 			}
 			
