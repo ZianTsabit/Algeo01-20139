@@ -564,6 +564,11 @@ public class Matrix {
 		return jmlSolusi;
 	}
 
+
+
+
+	// Fungsi untuk mengubah Matrix ke bentuk parametrik
+	// Prekondisi JmlSolusi = 2 
 	HashMap<String, String> MatrixToParam(){
 
 		HashMap<String, String> SolusiParametrik = new HashMap<>();
