@@ -545,7 +545,51 @@ public class Matrix {
 		return jmlSolusi;
 	}
 
-	public void MatrixToParam(){
+	HashMap<String, String> MatrixToParam(){
+
+		HashMap<String, String> SolusiParametrik = new HashMap<>();
+
+		char VarBebas = 'a'; //variabel bebas pertama
+		int i, j;
+
+		for (j = this.kol-2;j >= 0; j--){
+			boolean AllZero = true;
+
+			for (i = this.brs-1; i >= 0; i--){
+				if (this.Mat[i][j] != 0){
+					AllZero = false;
+					break;
+				}
+			}
+
+			if (AllZero || (this.Mat[i][j] != 0 )){
+				SolusiParametrik.put("x" + (j +1), VarBebas + "");
+				if (VarBebas == 'z'){
+					VarBebas -= 25;
+				} else{
+					VarBebas++;
+				}
+			}
+		}
+
+		int JmlBrsNotZero = 0;
+		i = 0;
+		j = 0;
+		boolean Zero = true;
+
+		while(i < this.brs){
+			Zero = true;
+			while (Zero && j < this.kol){
+				if (this.Mat[i][j] != 0){
+					JmlBrsNotZero++;
+					Zero = false;
+				}
+				j++;
+			}
+			i++;
+		}
+
+
 
 	}
 
