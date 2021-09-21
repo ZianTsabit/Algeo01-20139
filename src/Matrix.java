@@ -401,6 +401,28 @@ public class Matrix {
 			}
 		}
 	}
+	void Adjoin() {
+		this.Kofaktor();
+		this.Transpose();
+	}
+	void Inverse() {
+		int i, j;
+		double[][] M;
+		M = new double[this.brs][this.kol]
+
+		if (this.determinanKofaktor != 0) {
+			this.Adjoin()
+			for (i = 0; i < this.brs; i++) {
+				for (j = 0; j < this.kol; j++) {
+					M[i][j] = this.Mat[i][j]/this.determinanKofaktor;
+				}
+			}
+			
+			this.copyMatriks(M);
+		} else {
+			System.out.print("Matriks tidak memiliki balikan");
+		}
+	}
 	void sortMatriks(){
 		int i, j;
 		
