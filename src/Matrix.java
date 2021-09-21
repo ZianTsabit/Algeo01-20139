@@ -434,9 +434,37 @@ public class Matrix {
 			}
 			
 			this.copyMatriks(M);
-		} else {
-			System.out.print("Matriks tidak memiliki balikan");
 		}
+	}
+
+	String Cramer(double M[][]) {
+		int i, j;
+		double Mcopy[][];
+		Mcopy = new double[this.brs][this.kol];
+		double detAwal = this.determinanKofaktor();
+		double detAkhir, hasil;
+		String str = "";
+		
+		for (i = 0; i < this.brs; i++) {
+			for (j = 0; j < this.kol; j++) {
+				Mcopy[i][j] = this.Mat[i][j];
+			}
+		}
+		
+		if (detAwal != 0) {
+			for (j = 0; j < this.kol; j++) {
+				for(i = 0; i < this.brs; i++) {
+					this.Mat[i][j] = M[i][0];
+				}
+				detAkhir = this.determinanKofaktor();
+				hasil = detAkhir/detAwal;
+				str += "x" + (j+1) + "=" + (hasil) + " ";
+				for (i = 0; i < this.brs; i++) {
+					this.Mat[i][j] = Mcopy[i][j];
+				}
+			}
+		}
+		return str;
 	}
 	void sortMatriks(){
 		int i, j;
