@@ -690,7 +690,7 @@ public class Matrix {
 			for (int i = 0; i < Mat.brs; i++){
 				double Var = Mat.Mat[i][Mat.kol-1];
 				String VarString = String.format("%.4f", Var);
-				Solusi.put("x" + (i +1), VarString);
+				Solusi.put("x" + (i + 1), VarString);
 			}
 			return Solusi;
 		}else{
