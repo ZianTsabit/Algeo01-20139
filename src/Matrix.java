@@ -670,10 +670,13 @@ public class Matrix {
 
 	public void gaussEliminasi() {
 		
+		
 	}
 
 	public void gaussJordanEliminasi(){
 
+		int JmlSolusi;
+		HashMap<String, String> Solusi = new HashMap<>();
 
 	}
 	
