@@ -379,26 +379,36 @@ public class Matrix {
 	
 	void Kofaktor() {
 		int i, j;
+		double temp;
 		double[][] M;
 		M = new double[this.brs-1][this.kol-1];
 		Matrix M1 = new Matrix(this.brs-1,this.kol-1);
 		Matrix M2 = new Matrix(this.brs,this.kol);
 
-		for (i = 0; i < this.brs; i++) {
-			for (j = 0; j < this.kol; j++) {
-				this.reduceMatriks(M,i,j);
-				M1.copyMatriks(M);
-				M2.Mat[i][j] = M1.determinanKofaktor();
+		if (this.brs == 2 && this.kol == 2) {
+			temp = this.Mat[0][0];
+			this.Mat[0][0] = this.Mat[1][1];
+			this.Mat[1][1] = temp;
+			temp = this.Mat[0][1];
+			this.Mat[0][1] = -(this.Mat[1][0]);
+			this.Mat[1][0] = -(temp);
+		} else {
+			for (i = 0; i < this.brs; i++) {
+				for (j = 0; j < this.kol; j++) {
+					this.reduceMatriks(M,i,j);
+					M1.copyMatriks(M);
+					M2.Mat[i][j] = M1.determinanKofaktor();
 
-				if((i+j)%2 != 0) {
-					M2.Mat[i][j] = -(M2.Mat[i][j]);
+					if((i+j)%2 != 0) {
+						M2.Mat[i][j] = -(M2.Mat[i][j]);
+					}
+				}
 			}
-		}
-	}
-
-		for (i = 0; i < this.brs; i++) {
-			for (j =0; j < this.kol; j++) {
-				this.Mat[i][j] = M2.Mat[i][j];
+		
+			for (i = 0; i < this.brs; i++) {
+				for (j =0; j < this.kol; j++) {
+					this.Mat[i][j] = M2.Mat[i][j];
+				}
 			}
 		}
 	}
