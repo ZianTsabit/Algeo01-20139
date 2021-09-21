@@ -1,4 +1,7 @@
 import java.util.*;
+
+import javax.lang.model.util.ElementScanner14;
+
 import java.io.*;
 
 public class Matrix {
@@ -673,13 +676,44 @@ public class Matrix {
 		
 	}
 
-	public void gaussJordanEliminasi(){
+	public static HashMap<String, String> gaussJordanEliminasi(Matrix Mat){
 
 		int JmlSolusi;
 		HashMap<String, String> Solusi = new HashMap<>();
 
+		Mat.MakeReduceEchelon();
+		JmlSolusi = Mat.jmlSolusi();
+
+		if (JmlSolusi == 0){
+			return Solusi;
+		}else if( JmlSolusi == 1){
+			for (int i = 0; i < Mat.brs; i++){
+				double Var = Mat.Mat[i][Mat.kol-1];
+				String VarString = String.format("%.4f", Var);
+				Solusi.put("x" + (i +1), VarString);
+			}
+			return Solusi;
+		}else{
+			Solusi = Mat.MatrixToParam();
+			return Solusi;
+		}
 	}
 	
+	public static String DisplaySolusi(HashMap<String, String> SolusiHashMap){
+		
+		String str = new String();
+		if (SolusiHashMap.isEmpty()){
+			str = "SPL tidak memiliki solusi";
+		}else{
+			for (int i = SolusiHashMap.size()-1; i >= 0; i--){
+				str = "x" + (i+1) + "=" + SolusiHashMap.get("x"+(i+1));
+				if (i != 0){
+					str = str.concat(", ");
+				}
+			}
+		}
+		return str;
+	}
 
 
 
