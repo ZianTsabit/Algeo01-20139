@@ -497,7 +497,88 @@ public class Matrix {
 		return jmlSolusi;
 	}
 
-	public void MatrixToParam(){
+	HashMap<String, String> MatrixToParam(){
+
+		HashMap<String, String> SolusiParametrik = new HashMap<>();
+
+		char VarBebas = 'a'; //variabel bebas pertama
+		int i, j;
+
+		for (j = this.kol-2;j >= 0; j--){
+			boolean AllZero = true;
+
+			for (i = this.brs-1; i >= 0; i--){
+				if (this.Mat[i][j] != 0){
+					AllZero = false;
+					break;
+				}
+			}
+
+			if (AllZero || (this.Mat[i][j] != 0 )){
+				SolusiParametrik.put("x" + (j +1), VarBebas + "");
+				if (VarBebas == 'z'){
+					VarBebas -= 25;
+				} else{
+					VarBebas++;
+				}
+			}
+		}
+
+		int JmlBrsNotZero = 0;
+		i = 0;
+		j = 0;
+		boolean Zero = true;
+
+		while(i < this.brs){
+			Zero = true;
+			while (Zero && j < this.kol){
+				if (this.Mat[i][j] != 0){
+					JmlBrsNotZero++;
+					Zero = false;
+				}
+				j++;
+			}
+			i++;
+		}
+
+		for (i = 0; i < JmlBrsNotZero; i++){
+			j = 0;
+
+			while(this.Mat[i][j] != 1){
+				j++;
+			}
+			SolusiParametrik.put("x" + (j+1), "");
+
+			if(j != this.kol-2){
+				for (int k = j+1; k < this.kol; k++){
+					if(SolusiParametrik.get("x" + (j+1)) != null && SolusiParametrik.get("x" + (j+1)).equals("")){
+						if (k != this.kol-1){
+							if(this.Mat[i][k] > 0){
+								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + "-" + String.format("%.4f", this.Mat[i][k]) + SolusiParametrik.get("x" + (k+1)));
+							}else if (this.Mat[i][k] < 0){
+								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + String.format("%.4f", (-1)*this.Mat[i][k]) + SolusiParametrik.get("x" + (k+1)));
+							}
+						}else{
+							if (this.Mat[i][k] > 0 || this.Mat[i][k] < 0){
+								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + String.format("%.4f", this.Mat[i][k]));
+							} 
+						}
+					}else{
+						if (k != this.kol-1){
+							if(this.Mat[i][k] > 0){
+								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + "-" + String.format("%.4f", this.Mat[i][k]) + SolusiParametrik.get("x" + (k+1)));
+							}else if(this.Mat[i][k] < 0){
+								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + "+" + String.format("%.4f", (-1)*this.Mat[i][k]) + SolusiParametrik.get("x" + (k+1)));
+							}
+						}else{
+							
+						}
+					}
+				}
+			}
+		}
+
+
 
 	}
 
