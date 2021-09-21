@@ -635,15 +635,20 @@ public class Matrix {
 								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + "+" + String.format("%.4f", (-1)*this.Mat[i][k]) + SolusiParametrik.get("x" + (k+1)));
 							}
 						}else{
+							if(this.Mat[i][k] > 0){
+								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + "+" + String.format("%.4f", this.Mat[i][k]));
+							}else if (this.Mat[i][k] < 0){
+								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + " " + String.format("%.4f", this.Mat[i][k]));
+							}
 							
 						}
 					}
 				}
+			}else{
+				SolusiParametrik.replace("x" + (j+1), "" + String.format("%.4f", this.Mat[i][this.kol-1]));
 			}
 		}
-
-
-
+		return SolusiParametrik;
 	}
 
 	public void gaussEliminasi() {
