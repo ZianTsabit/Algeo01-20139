@@ -467,31 +467,6 @@ public class Matrix {
 		}
 	}
 
-	/*
-	public void gaussForm() {
-		this.sortMatriks();
-		for (int i = 0; i < this.brs; i++) {
-			if (!this.isBarisZero(i)) {
-				int IdxFirst = this.getFirstIndeks(i);
-				double firstCoefisien = this.Mat[i][IdxFirst];
-				for (int j = i + 1; j < this.brs; j++) {
-					if (!this.isBarisZero(j)) {
-						double k = (-1) * this.Mat[j][IdxFirst] / firstCoefisien;
-						this.tambahBaris(j, i, k);
-					}
-					this.Mat[j][IdxFirst] = 0;
-				}
-			}
-		}
-		for (int i = 0; i < this.brs; i++) {
-			if (!this.isBarisZero(i)) {
-				int IdxBrs = this.getFirstIndeks(i);
-				double firstCoefisien = this.Mat[i][IdxBrs];
-				this.kaliBaris(i, (1 / firstCoefisien));
-			}
-		}
-	}
-	*/
 
 	int jmlSolusi(){
 		boolean isNol1 = true;
@@ -521,6 +496,16 @@ public class Matrix {
 
 		return jmlSolusi;
 	}
+
+	public void gaussEliminasi() {
+		
+	}
+
+	public void gaussJordanEliminasi(){
+
+		
+	}
+	
 
 
 
