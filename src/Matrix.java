@@ -494,11 +494,85 @@ public class Matrix {
 	*/
 
 	int jmlSolusi(){
-		
+		boolean isNol1 = true;
+		boolean isNol2 = true;
 
+		int i = 0;
 
+		if ((this.Mat[this.brs-1][this.kol]) != 0.0d){
+			isNol1 = false;
+		}
 
+		while ((i < this.kol-1) && isNol2){
+			if ((this.Mat[this.brs-1][this.kol]) != 0.0d){
+				isNol2 = false;
+			}
+			i++;
+		}
+
+		int jmlSolusi; 
+		if (isNol2 && isNol1){
+			jmlSolusi = 2; //Memiliki solusi tak hingga
+		}else if (isNol2 && !isNol1){
+			jmlSolusi = 0; //Tidak Memiliki Solusi 
+		}else{
+			jmlSolusi = 1; //Memiliki Solusi Unik
+		}
+
+		return jmlSolusi;
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
