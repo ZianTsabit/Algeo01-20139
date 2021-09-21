@@ -418,6 +418,8 @@ public class Matrix {
 		}
 	}
 
+
+
 	//fungsi untuk membuat matriks menjadi bentuk matriks echelon
 
 	void MakeReduceEchelon(){
@@ -490,6 +492,13 @@ public class Matrix {
 		}
 	}
 	*/
+
+	int jmlSolusi(){
+		
+
+
+
+	}
 
 
 }
