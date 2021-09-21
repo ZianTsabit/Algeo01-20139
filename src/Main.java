@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.io.*;
 
 public class Main{
 
@@ -64,13 +65,14 @@ public class Main{
     }
     public static void SubMenuDet() {
         try{
-            int metode, jenis, ukuran;
+            int metode, jenis, ukuran, akhir;
             double hasil = 0;
             metode = 0;
             jenis = 0;
             ukuran = 0;
             hasil = 0;
             String namafile = null;
+            char simpan = 0;
             Matrix mat = new Matrix(0,0);
             Scanner input = new Scanner(System.in);
             
@@ -156,17 +158,46 @@ public class Main{
                 // mencari nilai determinan menggunakan eliminasi Gauss
             } else if (metode==2 && (jenis==1 || jenis==2) ) {
                 // mencari nilai determinan menggunakan ekspansi kofaktor
-                System.out.println("================================");
+                System.out.println("--------------------------------");
                 System.out.print("Dengan menggunakan ekspansi kofaktor, didapatkan nilai determinan matriks tersebut adalah: ");
                 hasil = mat.determinanKofaktor();
                 System.out.println(hasil);
-                System.out.println("================================");
+                System.out.println("--------------------------------");
                 // Menyimpan file
+                System.out.print("Apakah ingin menyimpan hasil? (y/n): ");
+                simpan = input.next().charAt(0);
             }
+
+            if (simpan=='y'){
+                System.out.print("Masukkan nama file untuk menyimpan diikuti oleh ekstensi .txt: ");
+                namafile = input.next();
+                BufferedWriter tulis = new BufferedWriter(new FileWriter("./output/"+namafile));
+                for (int i = 0; i < mat.brs; i++) {
+                    String baris = "";
+                    for (int j= 0; j < mat.kol; j++){
+                        baris += Double.toString(mat.Mat[i][j]);
+                        if (j!=mat.kol){
+                            baris += " ";
+                        }
+                    }
+                    if (i!=mat.brs){
+                        baris += "\n";
+                    }
+                    tulis.write(baris);
+                }
+                tulis.write("\nDengan menggunakan ekspansi kofaktor, didapatkan nilai determinan matriks tersebut adalah: " + hasil + "\n" );
+                tulis.close();
+                System.out.println("File berhasil disimpan dengan nama "+namafile);
+            }
+            System.out.println("================================");
+            System.out.println("Operasi determinan selesai");
+            System.out.println("Anda akan dikembalikan ke menu utama");
+            System.out.println("================================");
+            MainMenu();
+
         } catch(Exception e){ 
             System.out.println("Masukan tidak valid. Ulang kembali masukkan metode.");
             SubMenuDet();
-
         }
     }
     public static void SubMenuInv() {
