@@ -72,10 +72,17 @@ public class Matrix {
 		}else{
 			return this.kol;
 		}
-
-
 	}
 
+	int notZeroBrs(){
+		/* return indeks baris tidak nol pertama pada indeks kolom ke-0*/
+		int i = 0;
+
+		while((i < this.brs) && this.Mat[i][0] == 0){
+			i++;
+		}
+		return i;
+	}
 
 	/* ===INPUT ATAU OUTPUT === */
 	void bacaMatriks() {
@@ -184,14 +191,8 @@ public class Matrix {
 	void kurangBaris(int M, int N) {
 		// Mengurang baris ke-M dengan baris ke-N
 		int j;
-		if (M < 1 || M > this.brs){
-			System.out.println("Masukkan baris 1 tidak valid");
-		}else if(N < 1 || N > this.brs){
-			System.out.println("Masukkan baris 2 tidak valid");
-		}else{
-			for (j = 0; j < this.kol; j++) {
-				this.Mat[M][j] = this.Mat[M][j] - this.Mat[N][j];
-			}
+		for (j = 0; j < this.kol; j++) {
+			this.Mat[M][j] = this.Mat[M][j] - this.Mat[N][j];
 		}
 	}
 
@@ -335,7 +336,62 @@ public class Matrix {
 
 	}
 
-
+	double determinanReduksiBrs() {
+		int i, j;
+		double val;
+		double det = 1;
+		double[][] M = new double[this.brs-1][this.kol-1];
+		Matrix mr = new Matrix(this.brs-1,this.kol-1);
+	
+		if (this.brs == 2 && this.kol == 2) {
+			if (this.notZeroBrs() == this.brs) {
+				det = 0;
+			} else if (this.notZeroBrs() == 1) {
+				this.tukarBaris(0,1);
+				det = -(this.Mat[0][0] * this.Mat[1][1]);
+			} else {
+				if (this.Mat[1][0] != 0) {
+					val = this.Mat[1][0]/this.Mat[0][0];
+					this.kaliBaris(0,val);
+					this.kurangBaris(1,0);
+					this.kaliBaris(0,1/val);
+					det = this.Mat[0][0] * this.Mat[1][1];
+				} else {
+					det = this.Mat[0][0] * this.Mat[1][1];
+				}
+			}
+		} else {
+			if (this.notZeroBrs() == this.brs) {
+				det = 0;
+			} else if (this.notZeroBrs() != 0 && this.notZeroBrs() != this.brs) {
+				this.tukarBaris(0,this.notZeroBrs());
+				for (i = 1; i < this.brs; i++) {
+					if (this.Mat[i][0] != 0) {
+						val = this.Mat[i][0]/this.Mat[0][0];
+						this.kaliBaris(0,val);
+						this.kurangBaris(i,0);
+						this.kaliBaris(0,1/val);
+					}
+					this.reduceMatriks(M,0,0);
+					mr.copyMatriks(M);
+				}
+				det = -(this.Mat[0][0]) * mr.determinanReduksiBrs();
+			} else {
+				for (i = 1; i < this.brs; i++) {
+					if (this.Mat[i][0] != 0) {
+						val = this.Mat[i][0]/this.Mat[0][0];
+						this.kaliBaris(0,val);
+						this.kurangBaris(i,0);
+						this.kaliBaris(0,1/val);
+					}
+					this.reduceMatriks(M,0,0);
+					mr.copyMatriks(M);
+				}
+				det = this.Mat[0][0] * mr.determinanReduksiBrs();
+			}
+		}
+		return det;
+	}
 
 
 	
