@@ -772,9 +772,10 @@ public class Matrix {
 		return SolusiParametrik;
 	}
 
-	public void gaussEliminasi() {
-		
-		
+	public static HashMap<String, String> gaussEliminasi(Matrix Mat) {
+		Mat.MakeEchelon();
+
+		return gaussJordanEliminasi(Mat);	
 	}
 
 	public static HashMap<String, String> gaussJordanEliminasi(Matrix Mat){
