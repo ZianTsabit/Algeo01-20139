@@ -74,6 +74,14 @@ public class Matrix {
 		}
 	}
 
+
+	void setElmt(int baris, int kolom, double var){
+		this.Mat[baris][kolom] = var;
+	}
+
+
+	// =========================================================================================================//
+
 	int notZeroBrs(){
 		/* return indeks baris tidak nol pertama pada indeks kolom ke-0*/
 		int i = 0;
@@ -153,7 +161,13 @@ public class Matrix {
 		}
 	}
 
+	
+	
+	
 	/* ===FUNGSI HELPER=== */
+	
+	
+	
 	public void tukarBaris(int M, int N) {
 		// Menukar baris ke-M dengan baris ke-N
 		int j; 
@@ -230,6 +244,13 @@ public class Matrix {
 			for (j = 0; j < this.kol; j++) {
 				this.Mat[i][j] = M[i][j];
 			}
+		}
+	}
+
+	void TambahElmt(Matrix mat, int brs1, int brs2, double val){
+		for (int i = 0; i < mat.kol; i++){
+			double tmp = val*mat.Mat[brs1][i];
+			mat.setElmt(brs2, i, mat.Mat[brs2][i]+tmp);
 		}
 	}
 
@@ -322,8 +343,8 @@ public class Matrix {
 	 * ===FUNGSI - FUNGSI=== 
 	 * - determinan 
 	 * - inversMatrix 
-	 * - gauss 
-	 * - gaussJordan
+	 * - gaussEliminasi 
+	 * - gaussJordanEliminasi
 	 * 
 	 * 
 	 * 
@@ -331,7 +352,7 @@ public class Matrix {
 	 * 
 	 */
 
-	
+
 
 	double determinanReduksiBrs() {
 		int i, j;
@@ -390,13 +411,6 @@ public class Matrix {
 		return det;
 	}
 
-
-	
-
-
-
-
-	
 	public double determinanKofaktor() {
 		double det=0;
 		int i,j,k,x,y;
@@ -468,10 +482,15 @@ public class Matrix {
 			}
 		}
 	}
+	
+	
 	void Adjoin() {
 		this.Kofaktor();
 		this.Transpose();
 	}
+	
+	
+	
 	void Invers() {
 		int i, j;
 		double[][] M;
@@ -536,6 +555,8 @@ public class Matrix {
 		}
 		return str;
 	}
+	
+	
 	void sortMatriks(){
 		int i, j;
 		
@@ -555,9 +576,6 @@ public class Matrix {
 
 	}
 
-
-	
-	
 
 	//fungsi untuk membuat matriks menjadi bentuk matriks echelon 
 	void MakeEchelon(){
@@ -598,7 +616,6 @@ public class Matrix {
 			IdxFirst++;
 		}
 	}
-
 
 
 	//fungsi untuk membuat matriks menjadi bentuk matriks echelon
@@ -814,6 +831,85 @@ public class Matrix {
 		return str;
 	}
 
+	
+
+
+
+	//Fungsi untuk menempelkan matrix dengan matrix identitas
+	public void InverseGauss(Matrix mat){
+
+		Matrix mat2 = new Matrix(mat.brs, mat.kol + mat.kol);
+
+		for (int i = 0; i < mat.brs; i++){
+			for (int j = 0; j < mat.kol; j++){
+				mat2.setElmt(i, j, this.Mat[i][j]);
+			}
+		}
+
+		for (int i = 0;i < mat.brs; i++){
+			mat2.setElmt(i, this.kol+i, 1);
+		}
+
+	}
+
+	//Fungsi
+	void MaxDiagonal(){
+		
+		for (int i = 0; i < this.brs; i++){
+			double mx = 0;
+			int mr = i;
+
+			for (int j = 0; j < this.brs; j++){
+				if (Math.abs(this.Mat[j][i]) > mx){
+					mx = Math.abs(this.Mat[j][i]);
+					mr = j;
+				}
+			}
+
+			if (mr != i){
+				this.tukarBaris(i, mr);
+			}
+		}
+	}
+
+	void DivByDiagonal(){
+
+		for (int i = 0; i < this.brs; i++){
+			double idia = this.Mat[i][i];
+
+			for (int j = this.brs; j < this.kol; j++){
+				this.setElmt(i, j, this.Mat[i][j]/idia);
+			}
+			this.setElmt(i, i, this.Mat[i][i]/idia);
+		}
+	}
+	
+	void Diagonalize(Matrix mat){
+
+		for (int i = 0; i < mat.brs; i++){
+			for (int j = 0; j < mat.brs; j++){
+				if (i != j){
+					double ratio = mat.Mat[j][i]/mat.Mat[i][i];
+					TambahElmt(mat, j, i, -ratio);
+					
+				}
+			}
+		}
+	}
+	
+	public Matrix inverse(Matrix mat){
+		mat.MaxDiagonal();
+		mat.Diagonalize(mat);
+		mat.DivByDiagonal();
+
+		Matrix InvMat = new Matrix(mat.brs, mat.kol);
+		for (int i = 0; i < mat.brs; i++){
+			for (int j = 0; j < mat.brs;j++){
+				InvMat.setElmt(i, j, mat.Mat[i][mat.brs+j]);
+			}
+		}
+		return InvMat;
+	}
 
 
 
