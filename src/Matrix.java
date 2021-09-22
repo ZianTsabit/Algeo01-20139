@@ -772,46 +772,43 @@ public class Matrix {
 		return SolusiParametrik;
 	}
 
-	public static HashMap<String, String> gaussEliminasi(Matrix Mat) {
-		Mat.MakeEchelon();
+	public static HashMap<String, String> gaussEliminasi(Matrix mat) {
+		mat.MakeEchelon();
 
-		return gaussJordanEliminasi(Mat);	
+		return gaussJordanEliminasi(mat);	
 	}
 
-	public static HashMap<String, String> gaussJordanEliminasi(Matrix Mat){
+	public static HashMap<String, String> gaussJordanEliminasi(Matrix mat){
 
 		int JmlSolusi;
 		HashMap<String, String> Solusi = new HashMap<>();
 
-		Mat.MakeReduceEchelon();
-		JmlSolusi = Mat.jmlSolusi();
+		mat.MakeReduceEchelon();
+		JmlSolusi = mat.jmlSolusi();
 
 		if (JmlSolusi == 0){
 			return Solusi;
 		}else if( JmlSolusi == 1){
-			for (int i = 0; i < Mat.brs; i++){
-				double Var = Mat.Mat[i][Mat.kol-1];
-				String VarString = String.format("%.4f", Var);
-				Solusi.put("x" + (i + 1), VarString);
+			for (int i = mat.brs-1; i >= 0; i--){
+				double Var = mat.Mat[i][mat.kol-1];
+				String VarString = String.format("%.2f", Var);
+				Solusi.put("x" + (i+1), VarString); 
 			}
 			return Solusi;
 		}else{
-			Solusi = Mat.MatrixToParam();
+			Solusi = mat.MatrixToParam();
 			return Solusi;
 		}
 	}
 	
-	public static String DisplaySolusi(HashMap<String, String> SolusiHashMap){
+	public static String DisplaySolusi(HashMap<String, String> Solusi){
 		
 		String str = new String();
-		if (SolusiHashMap.isEmpty()){
+		if (Solusi.isEmpty()){
 			str = "SPL tidak memiliki solusi";
 		}else{
-			for (int i = SolusiHashMap.size()-1; i >= 0; i--){
-				str = "x" + (i+1) + "=" + SolusiHashMap.get("x"+(i+1));
-				if (i != 0){
-					str = str.concat(", ");
-				}
+			for (int i = 0; i < Solusi.size(); i++){
+				str = str.concat("x" + (i+1) + "=" + Solusi.get("x"+ (i+1)) + " ");	
 			}
 		}
 		return str;
