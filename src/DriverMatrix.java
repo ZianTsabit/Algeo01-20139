@@ -12,6 +12,7 @@ class DriverMatrix {
 
 	// membuat objek matriks
 	Matrix M = new Matrix(Bar,Kol);
+	
 
 	// mengisi matriks
 	M.bacaMatriks();
@@ -21,9 +22,9 @@ class DriverMatrix {
 
 	//double M1[][];
 	//M1 = new double[Bar][Kol];
-	
-	M.inverse(M);
-	M.tulisMatriks();
+	SPL spl = new SPL(M);
+	Matrix imat = spl.inverseGaussJordan();
+	imat.tulisMatriks();
 	//for (int i =0; i < Bar-1; i++) {
 		//for (int j = 0; j < Kol-1; j++) {
 			//System.out.print(M1[i][j]+ " ");

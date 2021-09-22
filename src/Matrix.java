@@ -834,7 +834,7 @@ public class Matrix {
 	
 
 
-
+	/*
 	//Fungsi untuk menempelkan matrix dengan matrix identitas
 	public void InverseGauss(Matrix mat){
 
@@ -897,12 +897,12 @@ public class Matrix {
 		}
 	}
 	
-	public Matrix inverse(Matrix mat){
+	public Matrix inverseGaussJordan(Matrix mat){
 		mat.MaxDiagonal();
 		mat.Diagonalize(mat);
 		mat.DivByDiagonal();
 
-		Matrix InvMat = new Matrix(mat.brs, mat.kol);
+		Matrix InvMat = new Matrix(mat.brs, mat.brs);
 		for (int i = 0; i < mat.brs; i++){
 			for (int j = 0; j < mat.brs;j++){
 				InvMat.setElmt(i, j, mat.Mat[i][mat.brs+j]);
@@ -910,6 +910,7 @@ public class Matrix {
 		}
 		return InvMat;
 	}
+	*/
 
 
 
