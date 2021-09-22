@@ -557,6 +557,12 @@ public class Matrix {
 		}
 
 	}
+
+
+	//fungsi untuk mengubah matrix menjadi matrix segitiga atas
+	void Upper(){
+
+	}
 	
 
 	//fungsi untuk membuat matriks menjadi bentuk matriks echelon 
