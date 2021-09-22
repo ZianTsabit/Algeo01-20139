@@ -739,34 +739,34 @@ public class Matrix {
 					if(SolusiParametrik.get("x" + (j+1)) != null && SolusiParametrik.get("x" + (j+1)).equals("")){
 						if (k != this.kol-1){
 							if(this.Mat[i][k] > 0){
-								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + "-" + String.format("%.4f", this.Mat[i][k]) + SolusiParametrik.get("x" + (k+1)));
+								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + "-" + String.format("%.2f", this.Mat[i][k]) + SolusiParametrik.get("x" + (k+1)));
 							}else if (this.Mat[i][k] < 0){
-								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + String.format("%.4f", (-1)*this.Mat[i][k]) + SolusiParametrik.get("x" + (k+1)));
+								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + String.format("%.2f", (-1)*this.Mat[i][k]) + SolusiParametrik.get("x" + (k+1)));
 							}
 						}else{
 							if (this.Mat[i][k] > 0 || this.Mat[i][k] < 0){
-								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + String.format("%.4f", this.Mat[i][k]));
+								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + String.format("%.2f", this.Mat[i][k]));
 							} 
 						}
 					}else{
 						if (k != this.kol-1){
 							if(this.Mat[i][k] > 0){
-								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + "-" + String.format("%.4f", this.Mat[i][k]) + SolusiParametrik.get("x" + (k+1)));
+								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + "-" + String.format("%.2f", this.Mat[i][k]) + SolusiParametrik.get("x" + (k+1)));
 							}else if(this.Mat[i][k] < 0){
-								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + "+" + String.format("%.4f", (-1)*this.Mat[i][k]) + SolusiParametrik.get("x" + (k+1)));
+								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + "+" + String.format("%.2f", (-1)*this.Mat[i][k]) + SolusiParametrik.get("x" + (k+1)));
 							}
 						}else{
 							if(this.Mat[i][k] > 0){
-								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + "+" + String.format("%.4f", this.Mat[i][k]));
+								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + "+" + String.format("%.2f", this.Mat[i][k]));
 							}else if (this.Mat[i][k] < 0){
-								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + " " + String.format("%.4f", this.Mat[i][k]));
+								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + " " + String.format("%.2f", this.Mat[i][k]));
 							}
 							
 						}
 					}
 				}
 			}else{
-				SolusiParametrik.replace("x" + (j+1), "" + String.format("%.4f", this.Mat[i][this.kol-1]));
+				SolusiParametrik.replace("x" + (j+1), "" + String.format("%.2f", this.Mat[i][this.kol-1]));
 			}
 		}
 		return SolusiParametrik;
