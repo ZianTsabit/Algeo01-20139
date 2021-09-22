@@ -331,10 +331,7 @@ public class Matrix {
 	 * 
 	 */
 
-	void CopyMatrix(Matrix M1, Matrix M2){
-		
-
-	}
+	
 
 	double determinanReduksiBrs() {
 		int i, j;
@@ -559,10 +556,7 @@ public class Matrix {
 	}
 
 
-	//fungsi untuk mengubah matrix menjadi matrix segitiga atas
-	void Upper(){
-
-	}
+	
 	
 
 	//fungsi untuk membuat matriks menjadi bentuk matriks echelon 
