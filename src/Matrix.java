@@ -830,24 +830,4 @@ public class Matrix {
 		}
 		return str;
 	}
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
