@@ -375,8 +375,8 @@ public class Main{
                 System.out.println("Dengan metode eliminasi Gauss,  ");
                 System.out.println("didapatkan nilai determinan ");
                 System.out.print("matriks tersebut adalah: ");
-                // hasil = mat.determinanGauss();
-                // System.out.println(hasil);
+                hasil = mat.determinanReduksiBrs();
+                System.out.println(hasil);
                 System.out.println("--------------------------------");
                 // Menyimpan file
                 System.out.print("Simpan hasil? (y/n): ");
@@ -521,7 +521,7 @@ public class Main{
                 System.out.println("Dengan metode eliminasi Gauss,  ");
                 System.out.println("didapatkan matriks balikan dari ");
                 System.out.print("matriks tersebut adalah: ");
-                // Operasi invers matriks
+                // Operasi Invers matriks
                 System.out.println("--------------------------------");
                 // Menyimpan file
                 System.out.print("Simpan hasil? (y/n): ");
@@ -529,12 +529,18 @@ public class Main{
 
             } else if (metode==2 && (jenis==1 || jenis==2) ) {
                 // mencari matriks balikan menggunakan ekspansi kofaktor
-                System.out.println("--------------------------------");
-                System.out.println("Dengan metode ekspansi kofaktor,");
-                System.out.println("didapatkan matriks balikan dari ");
-                System.out.print("matriks tersebut adalah: ");
-                // Operasi Invers matriks
-                System.out.println("--------------------------------");
+		if (mat.determinanKofaktor() == 0) {
+		    System.out.println("Matriks tidak memiliki balikan");
+		    System.out.println("Determinan matriks adalah 0");
+		} else {
+                    System.out.println("--------------------------------");
+                    System.out.println("Dengan metode ekspansi kofaktor,");
+                    System.out.println("didapatkan matriks balikan dari ");
+                    System.out.println("matriks tersebut adalah: ");
+                    mat.Invers();
+		    mat.tulisMatriks();
+		}
+		System.out.println("--------------------------------");
                 // Menyimpan file
                 System.out.print("Simpan hasil? (y/n): ");
                 simpan = input.next().charAt(0);
