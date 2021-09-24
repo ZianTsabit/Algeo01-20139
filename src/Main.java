@@ -539,7 +539,7 @@ public class Main{
                 System.out.println("didapatkan matriks balikan dari ");
                 System.out.print("matriks tersebut adalah: ");
                 // Operasi Invers matriks
-                
+                System.out.println();
                 SPL spl = new SPL(mat);
 	            Matrix imat = spl.inverseGaussJordan();
 	            imat.tulisMatriks();
