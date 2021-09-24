@@ -64,12 +64,12 @@ public class Main{
         try{
             int i, metode, jenis, akhir, Nbrs, Nkol;
             String hasil = "";
-	    double b[][];
-	    jenis = 0;
-	    Nbrs = 0;
+	        double b[][];
+	        jenis = 0;
+	        Nbrs = 0;
             String namafile = null;
             char simpan = 0;
-	    Matrix mat = new Matrix(0,0);
+	        Matrix mat = new Matrix(0,0);
             Scanner input = new Scanner(System.in);
             
             
@@ -207,26 +207,26 @@ public class Main{
                 // Penyelesaian SPL dengan metode matriks balikan
                 System.out.println("--------------------------------");
                 if(!mat.isPersegi()) {
-		    System.out.println("Matriks balikan tidak berlaku");
-		    System.out.println("Matriks tidak persegi");
-		} else {
-		    if(mat.determinanKofaktor() == 0) {
-			System.out.println("Matriks balikan tidak berlaku");
-			System.out.println("Matriks tidak memiliki balikan");
-			System.out.println("Determinan matriks adalah 0");
-		    } else {
-			System.out.println("Masukan matriks B: ");
-			b = new double[Nbrs][1];
-			for (i = 0; i < Nbrs; i++) {
-			    b[i][0] = input.nextInt();
-			}	
-			System.out.println("Dengan metode matriks balikan");
-			System.out.println("Didapatkan penyelesaian");	
-			hasil = mat.metodeInvers(b);
-			System.out.print(hasil);
-			System.out.println();
-		    }
-		}
+		            System.out.println("Matriks balikan tidak berlaku");
+		            System.out.println("Matriks tidak persegi");
+		        } else {
+		            if(mat.determinanKofaktor() == 0) {
+			            System.out.println("Matriks balikan tidak berlaku");
+			            System.out.println("Matriks tidak memiliki balikan");
+			            System.out.println("Determinan matriks adalah 0");
+		            }else{
+			            System.out.println("Masukan matriks B: ");
+			            b = new double[Nbrs][1];
+			            for (i = 0; i < Nbrs; i++) {
+			                b[i][0] = input.nextInt();
+			            }	
+			            System.out.println("Dengan metode matriks balikan");
+			            System.out.println("Didapatkan penyelesaian");	
+			            hasil = mat.metodeInvers(b);
+			            System.out.print(hasil);
+			            System.out.println();
+		            }   
+		        }
                 System.out.println("--------------------------------");
                 // Menyimpan file
                 System.out.print("Simpan hasil? (y/n): ");
@@ -236,25 +236,25 @@ public class Main{
                 // Penyelesaian SPL dengan metode kaidah cramer
                 System.out.println("--------------------------------");
                 if(!mat.isPersegi()) {
-		    System.out.println("Kaidah Cramer tidak berlaku");
-		    System.out.println("Matriks tidak persegi");
-		} else {
-		    if(mat.determinanKofaktor() == 0) {
-			System.out.println("Kaidah Cramer tidak berlaku");
-			System.out.println("Determinan matriks adalah 0");
-		    } else {
-			System.out.println("Masukan matriks B: ");
-			b = new double[Nbrs][1];
-			for (i = 0; i < Nbrs; i++) {
-			    b[i][0] = input.nextInt();
-			}	
-			System.out.println("Dengan metode Kaidah Cramer");
-			System.out.println("Didapatkan penyelesaian");	
-			hasil = mat.Cramer(b);
-			System.out.print(hasil);
-			System.out.println();
-		    }
-		}
+		            System.out.println("Kaidah Cramer tidak berlaku");
+		            System.out.println("Matriks tidak persegi");
+		        }else{
+		            if(mat.determinanKofaktor() == 0) {
+			            System.out.println("Kaidah Cramer tidak berlaku");
+			            System.out.println("Determinan matriks adalah 0");
+		            }else{
+			            System.out.println("Masukan matriks B: ");
+			            b = new double[Nbrs][1];
+			            for (i = 0; i < Nbrs; i++) {
+			                b[i][0] = input.nextInt();
+			            }	
+			            System.out.println("Dengan metode Kaidah Cramer");
+			            System.out.println("Didapatkan penyelesaian");	
+			            hasil = mat.Cramer(b);
+			            System.out.print(hasil);
+			            System.out.println();
+		            }
+		        }
                 System.out.println("--------------------------------");
                 // Menyimpan file
                 System.out.print("Simpan hasil? (y/n): ");
@@ -539,9 +539,11 @@ public class Main{
                 System.out.println("didapatkan matriks balikan dari ");
                 System.out.print("matriks tersebut adalah: ");
                 // Operasi Invers matriks
+                
                 SPL spl = new SPL(mat);
 	            Matrix imat = spl.inverseGaussJordan();
 	            imat.tulisMatriks();
+                
                 System.out.println("--------------------------------");
                 // Menyimpan file
                 System.out.print("Simpan hasil? (y/n): ");
