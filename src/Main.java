@@ -522,6 +522,9 @@ public class Main{
                 System.out.println("didapatkan matriks balikan dari ");
                 System.out.print("matriks tersebut adalah: ");
                 // Operasi Invers matriks
+                SPL spl = new SPL(mat);
+	            Matrix imat = spl.inverseGaussJordan();
+	            imat.tulisMatriks();
                 System.out.println("--------------------------------");
                 // Menyimpan file
                 System.out.print("Simpan hasil? (y/n): ");
@@ -529,6 +532,10 @@ public class Main{
 
             } else if (metode==2 && (jenis==1 || jenis==2) ) {
                 // mencari matriks balikan menggunakan ekspansi kofaktor
+
+
+
+
 		if (mat.determinanKofaktor() == 0) {
 		    System.out.println("Matriks tidak memiliki balikan");
 		    System.out.println("Determinan matriks adalah 0");
