@@ -22,9 +22,9 @@ class DriverMatrix {
 
 	//double M1[][];
 	//M1 = new double[Bar][Kol];
-	SPL spl = new SPL(M);
-	Matrix imat = spl.inverseGaussJordan();
-	imat.tulisMatriks();
+	HashMap<String, String> sol = new HashMap<>();
+	sol = Matrix.gaussJordanEliminasi(M);
+	System.out.println(Matrix.DisplaySolusi(sol));
 	//for (int i =0; i < Bar-1; i++) {
 		//for (int j = 0; j < Kol-1; j++) {
 			//System.out.print(M1[i][j]+ " ");

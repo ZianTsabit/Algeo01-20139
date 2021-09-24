@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Scanner;
 import java.io.*;
 
@@ -6,6 +7,8 @@ public class Main{
     public static void main(String[] args) {
         MainMenu();
     }
+
+    
 
     public static void MainMenu() {
         try{
@@ -55,6 +58,8 @@ public class Main{
         }
     }
 
+   
+
     public static void SubMenuSPL() {
         try{
             int i, metode, jenis, akhir, Nbrs, Nkol;
@@ -66,6 +71,7 @@ public class Main{
             char simpan = 0;
 	    Matrix mat = new Matrix(0,0);
             Scanner input = new Scanner(System.in);
+            
             
             System.out.println("--------------------------------");
             System.out.println("       Menu yang dipilih:       ");
@@ -172,16 +178,27 @@ public class Main{
                 // Penyelesaian SPL dengan metode eliminasi gauss
                 System.out.println("--------------------------------");
                 // Letakkan Operasi disini
+                
+                HashMap<String, String> sol = new HashMap<>();
+	            sol = Matrix.gaussEliminasi(mat);
+	            System.out.println(Matrix.DisplaySolusi(sol));
+
                 System.out.println("--------------------------------");
                 // Menyimpan file
                 System.out.print("Simpan hasil? (y/n): ");
                 simpan = input.next().charAt(0);
 
             } else if (metode==2 && (jenis==1 || jenis==2) ) {
-                // Penyelesaian SPL dengan metode eliminasi gauss
+                // Penyelesaian SPL dengan metode eliminasi gauss-jordan
                 System.out.println("--------------------------------");
                 // Letakkan Operasi disini
+                
+                HashMap<String, String> sol = new HashMap<>();
+	            sol = Matrix.gaussJordanEliminasi(mat);
+	            System.out.println(Matrix.DisplaySolusi(sol));
+                
                 System.out.println("--------------------------------");
+                
                 // Menyimpan file
                 System.out.print("Simpan hasil? (y/n): ");
                 simpan = input.next().charAt(0);
