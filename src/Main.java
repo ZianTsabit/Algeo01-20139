@@ -551,22 +551,18 @@ public class Main{
 
             } else if (metode==2 && (jenis==1 || jenis==2) ) {
                 // mencari matriks balikan menggunakan ekspansi kofaktor
-
-
-
-
-		if (mat.determinanKofaktor() == 0) {
-		    System.out.println("Matriks tidak memiliki balikan");
-		    System.out.println("Determinan matriks adalah 0");
-		} else {
+		        if (mat.determinanKofaktor() == 0) {
+		        System.out.println("Matriks tidak memiliki balikan");
+		        System.out.println("Determinan matriks adalah 0");
+		        } else {
                     System.out.println("--------------------------------");
                     System.out.println("Dengan metode ekspansi kofaktor,");
                     System.out.println("didapatkan matriks balikan dari ");
                     System.out.println("matriks tersebut adalah: ");
                     mat.Invers();
-		    mat.tulisMatriks();
-		}
-		System.out.println("--------------------------------");
+		            mat.tulisMatriks();
+		        }
+		        System.out.println("--------------------------------");
                 // Menyimpan file
                 System.out.print("Simpan hasil? (y/n): ");
                 simpan = input.next().charAt(0);
