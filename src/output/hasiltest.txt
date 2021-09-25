@@ -1,5 +1,8 @@
-3.0 1.0 -4.0 
-2.0 5.0 6.0 
-1.0 4.0 8.0 
+1.0 2.0 3.0 
+2.0 5.0 3.0 
+1.0 0.0 8.0 
 
-Dengan menggunakan ekspansi kofaktor, didapatkan nilai determinan matriks tersebut adalah: 26.0
+Dengan menggunakan eliminasi Gauss, didapatkan matriks balikan dari matriks tersebut adalah: 
+-40.0 16.0 9.0 
+13.0 -5.0 -3.0 
+5.0 -2.0 -1.0 
