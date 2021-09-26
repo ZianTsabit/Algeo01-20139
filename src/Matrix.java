@@ -833,10 +833,10 @@ public class Matrix {
 	}
 
 
+
+	//Belum bisa di pake
 	Matrix Regresi(Matrix mat){
 
-		
-    	
 		
 		Scanner s = new Scanner(System.in);
         int i, j, k, jmlBrs, jmlKol;
