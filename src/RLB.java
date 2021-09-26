@@ -1,3 +1,5 @@
+
+/*
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -90,17 +92,21 @@ public class RLB {
         String xPrediksi = "";
         jumlah = Solusi.get(0);
         System.out.print("Ingin memprediksi? (y/n)");
+        if (s.next().toLowerCase().equals("y")){
+            for(i = 1; i < m1.brs;i++){
+                System.out.print("Masukkan x" + i + ": ") ;
+                double input = s.nextDouble();
+                jumlah += input*Solusi.get(i);
+                xPrediksi += "x" + i + ": " + input + "\n";
+            }
+        }
 
+        String Prediksi = "Hasil prediksi: y + " + jumlah;
+        System.out.print(Prediksi);
 
+        yx += "\n\nPrediksi:\n" + xPrediksi + Prediksi;
 
-
+        return m1;
     }
-
-
-
-
-
-
-
-
 } 
+*/

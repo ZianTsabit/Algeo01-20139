@@ -704,7 +704,7 @@ public class Matrix {
 
 		HashMap<String, String> SolusiParametrik = new HashMap<>();
 
-		char VarBebas = 'a'; //variabel bebas pertama
+		char VarBebas = 's'; //variabel bebas pertama
 		int i, j;
 
 		for (j = this.kol-2;j >= 0; j--){
@@ -717,11 +717,11 @@ public class Matrix {
 				}
 			}
 
-			if (AllZero || (this.Mat[i][j] != 0 )){
-				SolusiParametrik.put("x" + (j +1), VarBebas + "");
+			if (AllZero || (this.Mat[i][j] != 1 )){
+				SolusiParametrik.put("x" + (j+1), VarBebas + "");
 				if (VarBebas == 'z'){
 					VarBebas -= 25;
-				} else{
+				}else{
 					VarBebas++;
 				}
 			}
@@ -743,12 +743,14 @@ public class Matrix {
 			}
 			i++;
 		}
+		
 		for (i = 0; i < JmlBrsNotZero; i++){
 			j = 0;
 
 			while(this.Mat[i][j] != 1){
 				j++;
 			}
+			
 			SolusiParametrik.put("x" + (j+1), "");
 
 			if(j != this.kol-2){
@@ -778,7 +780,6 @@ public class Matrix {
 							}else if (this.Mat[i][k] < 0){
 								SolusiParametrik.replace("x" + (j+1), SolusiParametrik.get("x" + (j+1)) + " " + String.format("%.2f", this.Mat[i][k]));
 							}
-							
 						}
 					}
 				}
@@ -830,4 +831,119 @@ public class Matrix {
 		}
 		return str;
 	}
+
+
+	Matrix Regresi(Matrix mat){
+
+		
+    	
+		
+		Scanner s = new Scanner(System.in);
+        int i, j, k, jmlBrs, jmlKol;
+
+        double jumlah = 0;
+
+        jmlBrs = mat.brs;
+        jmlKol = mat.kol;
+
+
+        HashMap<String, String> SolusiHM = new HashMap<>();
+        ArrayList<Double> Solusi = new ArrayList<>();
+        String yx;
+
+        //Membuat matriks baru
+
+        Matrix m1 = new Matrix(jmlBrs, (jmlKol+1));
+
+        //Mengisi m1 dengan (0, 0)
+
+        m1.setElmt(0, 0, jmlBrs);
+
+        //Mengisi m1 untuk baris pertama
+
+        for (i = 0; i < jmlKol; i++){
+            for (j = 0; j < jmlBrs; j++){
+                jumlah = jumlah + mat.Mat[j][i];
+            }
+            m1.setElmt(0, (i+1), jumlah);
+            jumlah = 0;
+        }
+
+        //Mengisi m1 untuk kolom pertama
+
+        for (i = 1; i < jmlKol; i++){
+            m1.setElmt(i, 0, m1.Mat[0][i]);
+        }
+
+        //Mengisi m1 untuk sisanya
+
+        for (i = 1; i < jmlKol; i++){
+            for (j = 0; j < jmlKol; j++){
+                for (k = 0; k < jmlBrs; k++){
+                    jumlah = jumlah + (mat.Mat[k][i-1] * mat.Mat[k][j]);
+                }
+                m1.setElmt(i, (j+1), jumlah);
+                jumlah = 0;
+                
+            }
+        }
+
+        //Melakukan Gauss-Jordan
+
+        SolusiHM = gaussJordanEliminasi(m1);
+        DisplaySolusi(SolusiHM);
+
+        for (i = 0; i < m1.brs; ++i){
+            Solusi.add(i, m1.Mat[i][mat.kol-1]);
+        }
+
+        //Membuat persamaan y
+
+        yx = "y = ";
+        for (i = 0; i < m1.brs; ++i){
+            yx += String.format("%.2f", Solusi.get(i) >= 0 || i == 0 ? Solusi.get(i) : -1*(Solusi.get(i)));
+            
+            if (i != 0){
+                yx += "x" + i;
+            }
+
+            if (i < m1.brs-1){
+                yx += (Solusi.get(i+1) >= 0) ? "+" : " - ";
+            }
+        }
+        System.out.println(yx);
+
+
+        //Prediksi
+
+        String xTaksiran = "";
+        jumlah = Solusi.get(0);
+        System.out.print("Ingin memberikan taksiran? (y/n) : ");
+        if (s.next().toLowerCase().equals("y")){
+            for(i = 1; i < m1.brs;i++){
+                System.out.print("Masukkan x" + i + ": ") ;
+                double input = s.nextDouble();
+                jumlah += input*Solusi.get(i);
+                xTaksiran += "x" + i + ": " + input + "\n";
+            }
+        }
+
+        String Taksiran = "Hasil taksiran: y + " + jumlah;
+        System.out.print(Taksiran);
+
+        yx += "\n\nTaksiran:\n" + xTaksiran + Taksiran;
+
+        return m1;
+		
+
+	}
+
+
+
+
+
+
+
+
+
 }

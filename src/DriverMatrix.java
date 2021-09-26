@@ -3,37 +3,16 @@ import java.util.*;
 class DriverMatrix {
     public static void main(String[] args) {
 	Scanner in = new Scanner (System.in);
-
-	// masukan baris dan kolom yang diinginkan
-	System.out.print("Masukan baris: ");
-	int Bar = in.nextInt();
-	System.out.print("Masukan kolom: ");
-	int Kol = in.nextInt();
-
-	// membuat objek matriks
-	Matrix M = new Matrix(Bar,Kol);
 	
+	int nBrsA;
 
-	// mengisi matriks
+	System.out.printf("\nMasukkan n: ");
+	nBrsA = in.nextInt();
+	Matrix M = new Matrix(nBrsA, nBrsA);
+	System.out.println("Masukkan matriks : ");
 	M.bacaMatriks();
 
-	// menulis matriks
-	M.tulisMatriks();
+	M.Regresi(M);
 
-	//double M1[][];
-	//M1 = new double[Bar][Kol];
-	HashMap<String, String> sol = new HashMap<>();
-	sol = Matrix.gaussJordanEliminasi(M);
-	System.out.println(Matrix.DisplaySolusi(sol));
-	//for (int i =0; i < Bar-1; i++) {
-		//for (int j = 0; j < Kol-1; j++) {
-			//System.out.print(M1[i][j]+ " ");
-		//}
-		//System.out.println();
-	//}
-	
-	//double det = M.determinanSarrus(M1,Bar-1,Kol-1);
-	//System.out.print(det);
-    //} 
-}
+	}
 }

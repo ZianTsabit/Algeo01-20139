@@ -177,11 +177,13 @@ public class Main{
             if (metode==1 && (jenis==1 || jenis==2) ){
                 // Penyelesaian SPL dengan metode eliminasi gauss
                 System.out.println("--------------------------------");
+                System.out.println("Dengan menggunakan metode eliminasi gauss");
+                System.out.println("Didapatkan solusi sebagai berikut : ");
                 // Letakkan Operasi disini
                 
                 HashMap<String, String> sol = new HashMap<>();
-	        sol = Matrix.gaussEliminasi(mat);
-	        System.out.println(Matrix.DisplaySolusi(sol));
+	            sol = Matrix.gaussEliminasi(mat);
+	            System.out.println(Matrix.DisplaySolusi(sol));
 
                 System.out.println("--------------------------------");
                 // Menyimpan file
@@ -191,11 +193,13 @@ public class Main{
             } else if (metode==2 && (jenis==1 || jenis==2) ) {
                 // Penyelesaian SPL dengan metode eliminasi gauss-jordan
                 System.out.println("--------------------------------");
+                System.out.println("Dengan menggunakan metode eliminasi gauss jordan");
+                System.out.println("Didapatkan solusi sebagai berikut : ");
                 // Letakkan Operasi disini
                 
                 HashMap<String, String> sol = new HashMap<>();
-	        sol = Matrix.gaussJordanEliminasi(mat);
-	        System.out.println(Matrix.DisplaySolusi(sol));
+	            sol = Matrix.gaussJordanEliminasi(mat);
+	            System.out.println(Matrix.DisplaySolusi(sol));
                 
                 System.out.println("--------------------------------");
                 
