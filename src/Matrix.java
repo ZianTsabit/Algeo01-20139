@@ -52,7 +52,7 @@ public class Matrix {
 
 	public int getJmlKol(){
 		//Mengeluarkan jumlah kolom
-		return	this.kol;
+		return this.kol;
 	}
 
 	int getFirstIndeks(int jmlBrs){
@@ -228,6 +228,25 @@ public class Matrix {
 		}
 	}
 
+	double jumlahKaliKolom(int i, int j) {
+		int m;
+		double hasil = 0;
+	
+		for (m = 0; m < this.brs; m++) {
+			hasil += this.Mat[m][i] * this.Mat[m][j];
+		}
+		return hasil;
+	}
+
+	double jumlahKolom(int j) {
+		int i;
+		double hasil = 0;
+
+		for (i = 0; i < this.brs; i++) {
+			hasil += this.Mat[i][j];
+		}
+		return hasil;
+	}
 	void Transpose() {
 		// Menghasilkan matriks transpose
 		int i, j;

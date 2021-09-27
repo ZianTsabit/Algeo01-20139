@@ -1,112 +1,62 @@
-
-/*
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 
 public class RLB {
 
+	Matrix M;
 
-    Matrix mat;
-    
-    public RLB(){
-        
-        Scanner s = new Scanner(System.in);
-        int i, j, k, jmlBrs, jmlKol;
+	public RLB(int n, int jmlx) {
+		M = new Matrix(n,jmlx+1);	
+	}
 
-        double jumlah = 0;
+	void bacaRLB() {
+		int i, j;
+		Scanner input = new Scanner(System.in);
+		
+		for (i = 0; i < M.brs; i++) {
+			for (j = 0; j < M.kol; j++) {
+				M.Mat[i][j] = input.nextDouble();
+			}
+		}
+	}
 
-        jmlBrs = mat.brs;
-        jmlKol = mat.kol;
+	Matrix CreateRLB(int jmlx, int n) {
+		int i, j;
+		Matrix R = new Matrix(jmlx+1,jmlx+2);
 
+		R.Mat[0][0] = n;
+		for (i = 0; i < (jmlx+1); i++) {
+			for (j = 1; j < (jmlx+2); j++) {
+				if (i == 0) {
+					R.Mat[i][j] = M.jumlahKolom(j-1);
+					if (j != (jmlx+1)) {
+						R.Mat[j][i] = R.Mat[i][j];
+					}
+				} else {
+					R.Mat[i][j] = M.jumlahKaliKolom(i-1,j-1);
+				}
+			}
+		}
+		return R;
+	}
 
-        HashMap<String, String> SolusiHM = new HashMap<>();
-        ArrayList<Double> Solusi = new ArrayList<>();
-        String yx;
+	void persRLB(Matrix R) {
+		R.MakeReduceEchelon();
 
-        //Membuat matriks baru
-
-        Matrix m1 = new Matrix(jmlBrs, (jmlKol+1));
-
-        //Mengisi m1 dengan (0, 0)
-
-        m1.setElmt(0, 0, jmlBrs);
-
-        //Mengisi m1 untuk baris pertama
-
-        for (i = 0; i < jmlKol; i++){
-            for (j = 0; j < jmlBrs; j++){
-                jumlah = jumlah + mat.Mat[j][i];
-            }
-            m1.setElmt(0, (i+1), jumlah);
-            jumlah = 0;
+		int i;
+        	System.out.println("Persamaan hasil regresi linear berganda: ");
+        	System.out.print("y = ");
+        	for (i = 0; i < R.brs; i++) {
+            		if (i==0){
+                		System.out.print(R.Mat[i][R.kol-1]);
+            		} else {
+                		if (R.Mat[i][R.kol-1]>0){
+                    			System.out.print(" + ");
+                		} else {
+                    			System.out.print(" - ");
+                		}
+                    		System.out.print(Math.abs(R.Mat[i][R.kol-1]) + "x" + i);
+            		}
+		}
         }
-
-        //Mengisi m1 untuk kolom pertama
-
-        for (i = 1; i < jmlKol; i++){
-            m1.setElmt(i, 0, m1.Mat[0][i]);
-        }
-
-        //Mengisi m1 untuk sisanya
-
-        for (i = 1; i < jmlKol; i++){
-            for (j = 0; j < jmlKol; j++){
-                for (k = 0; k < jmlBrs; k++){
-                    jumlah = jumlah + (mat.Mat[k][i-1] * mat.Mat[k][j]);
-                }
-                m1.setElmt(i, (j+1), jumlah);
-                jumlah = 0;
-                
-            }
-        }
-
-        //Melakukan Gauss-Jordan
-
-        SolusiHM = Matrix.gaussJordanEliminasi(m1);
-        Matrix.DisplaySolusi(SolusiHM);
-
-        for (i = 0; i < m1.brs; ++i){
-            Solusi.add(i, m1.Mat[i][mat.kol-1]);
-        }
-
-        //Membuat persamaan y
-
-        yx = "y = ";
-        for (i = 0; i < m1.brs; ++i){
-            yx += String.format("%.2f", Solusi.get(i) >= 0 || i == 0 ? Solusi.get(i) : -1*(Solusi.get(i)));
-            
-            if (i != 0){
-                yx += "x" + i;
-            }
-
-            if (i < m1.brs-1){
-                yx += (Solusi.get(i+1) >= 0) ? "+" : " - ";
-            }
-        }
-        System.out.println(yx);
-
-
-        //Prediksi
-
-        String xPrediksi = "";
-        jumlah = Solusi.get(0);
-        System.out.print("Ingin memprediksi? (y/n)");
-        if (s.next().toLowerCase().equals("y")){
-            for(i = 1; i < m1.brs;i++){
-                System.out.print("Masukkan x" + i + ": ") ;
-                double input = s.nextDouble();
-                jumlah += input*Solusi.get(i);
-                xPrediksi += "x" + i + ": " + input + "\n";
-            }
-        }
-
-        String Prediksi = "Hasil prediksi: y + " + jumlah;
-        System.out.print(Prediksi);
-
-        yx += "\n\nPrediksi:\n" + xPrediksi + Prediksi;
-
-        return m1;
-    }
 } 
-*/
