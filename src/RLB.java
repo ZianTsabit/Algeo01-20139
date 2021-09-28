@@ -37,13 +37,27 @@ public class RLB {
 				}
 			}
 		}
+
+		R.MakeReduceEchelon();
 		return R;
 	}
 
-	void persRLB(Matrix R) {
-		R.MakeReduceEchelon();
-
+	Matrix inputX(int x) {
+		Scanner input = new Scanner(System.in);
 		int i;
+		Matrix I = new Matrix(x,1);
+
+		for (i = 0; i < I.brs; i++) {
+			System.out.print("Masukkan nilai x" + (i+1) + " : ");
+			I.Mat[i][0] = input.nextDouble();
+		}
+
+		return I;
+	}
+
+	void persRLB(Matrix R) {
+		int i;
+
         	System.out.println("Persamaan hasil regresi linear berganda: ");
         	System.out.print("y = ");
         	for (i = 0; i < R.brs; i++) {
@@ -58,5 +72,22 @@ public class RLB {
                     		System.out.print(Math.abs(R.Mat[i][R.kol-1]) + "x" + i);
             		}
 		}
+		System.out.println();
         }
+
+	void TaksirX(Matrix R, Matrix I) {
+		int i;
+		double x;
+		double hasil = 0;
+		
+		for (i = 0; i < R.brs; i++) {
+			if (i == 0) {
+				hasil += R.Mat[i][R.kol-1];
+			} else {
+				hasil += I.Mat[i-1][0] * R.Mat[i][R.kol-1];
+			}
+		}
+		
+		System.out.println("Hasil taksiran regresi : " + hasil);
+	}
 } 

@@ -717,7 +717,11 @@ public class Main{
             String namafile = null;
             char simpan = 0;
             Matrix mat = new Matrix(0,0);
-            
+            Matrix Reg = new Matrix(0,0);
+	    Matrix I = new Matrix(0,0);
+	    int x = 0;
+	    int n = 0;
+	    RLB R = new RLB(0,0);
 
             Scanner input = new Scanner(System.in);
             
@@ -735,7 +739,13 @@ public class Main{
                     System.out.println("--------------------------------");
                     
                     // Pembentukan titik-titik
-                    
+		    System.out.print("Masukkan banyaknya jumlah n : ");
+                    n = input.nextInt();
+		    System.out.print("Masukkan banyaknya nilai x : ");
+		    x = input.nextInt();
+		    R = new RLB(n,x);
+		    R.bacaRLB();
+		    I = R.inputX(x);
                     break;
                 case 2:
                     System.out.println("--------------------------------");
@@ -752,10 +762,11 @@ public class Main{
                     System.out.println("Masukan jenis masukan tidak valid. Ulang kembali dari awal.");
                     SubMenuRLB();
             }
-            
+	    Reg = R.CreateRLB(x,n);
+	    R.persRLB(Reg);
+	    System.out.println("--------------------------------");
+	    R.TaksirX(Reg,I);
             System.out.println("--------------------------------");
-            
-            System.out.println("\n--------------------------------");
             if ((jenis==1 || jenis==2)){
                 
                 
