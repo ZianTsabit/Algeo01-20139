@@ -106,7 +106,7 @@ public class Matrix {
 	public void bacaFileMatriks (String FileName) {
 		// Membaca file eksternal kemudian dikonversi kedalam tipe Matrix
 		try{
-			String dir = "./test/" + FileName;
+			String dir = "../test/" + FileName;
 			File file = new File(dir);
 			int i,j;
 			int Nbrs = 0 , Nkol = 0;
