@@ -719,6 +719,7 @@ public class Main{
             Matrix mat = new Matrix(0,0);
             Matrix Reg = new Matrix(0,0);
 	    Matrix I = new Matrix(0,0);
+	    Matrix matTitik = new Matrix(0,0);
 	    int x = 0;
 	    int n = 0;
 	    RLB R = new RLB(0,0);
@@ -746,6 +747,7 @@ public class Main{
 		    R = new RLB(n,x);
 		    R.bacaRLB();
 		    I = R.inputX(x);
+		    Reg = R.CreateRLB(x,n);
                     break;
                 case 2:
                     System.out.println("--------------------------------");
@@ -754,15 +756,15 @@ public class Main{
                     System.out.println("--------------------------------");
                     System.out.print("Masukkan nama file (.txt) : ");
                     namafile = input.next();
-                    
+                    matTitik.bacaFileMatriks(namafile);
                     System.out.println("File "+namafile+" berhasil diproses.");
-                    
+		    I = R.inputX(matTitik.kol-1);
+                    Reg = R.CreateRLBFile(matTitik);
                     break;
                 default:
                     System.out.println("Masukan jenis masukan tidak valid. Ulang kembali dari awal.");
                     SubMenuRLB();
             }
-	    Reg = R.CreateRLB(x,n);
 	    R.persRLB(Reg);
 	    System.out.println("--------------------------------");
 	    R.TaksirX(Reg,I);

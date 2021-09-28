@@ -42,6 +42,28 @@ public class RLB {
 		return R;
 	}
 
+	Matrix CreateRLBFile(Matrix F) {
+		int i, j;
+		Matrix R = new Matrix(F.kol,F.kol+1);
+
+		R.Mat[0][0] = F.brs;
+		for (i = 0; i < F.kol; i++) {
+			for (j = 1; j < (F.kol+1); j++) {
+				if (i == 0) {
+					R.Mat[i][j] = F.jumlahKolom(j-1);
+					if (j != F.kol) {
+						R.Mat[j][i] = R.Mat[i][j];
+					}
+				} else {
+					R.Mat[i][j] = F.jumlahKaliKolom(i-1,j-1);
+				}
+			}
+		}
+
+		R.MakeReduceEchelon();
+		return R;
+	}
+
 	Matrix inputX(int x) {
 		Scanner input = new Scanner(System.in);
 		int i;
@@ -57,7 +79,7 @@ public class RLB {
 
 	void persRLB(Matrix R) {
 		int i;
-
+		
         	System.out.println("Persamaan hasil regresi linear berganda: ");
         	System.out.print("y = ");
         	for (i = 0; i < R.brs; i++) {
