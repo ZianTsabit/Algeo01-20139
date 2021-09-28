@@ -639,6 +639,7 @@ public class Main{
         try{
             int jenis = 0;
             String namafile = null;
+            String namafilesimpan = null;
             char simpan = 0;
             Matrix mat = new Matrix(0,0);
             Matrix matTitik = new Matrix(0,0);
@@ -695,9 +696,9 @@ public class Main{
 
             if (simpan=='y'){
                 System.out.print("Masukkan nama file penyimpanan (.txt): ");
-                namafile = input.next();
-                Interpolasi.simpanInterpolasi(matTitik, matPolinom, titikx, namafile);
-                System.out.println("File berhasil disimpan dengan nama "+namafile);
+                namafilesimpan = input.next();
+                Interpolasi.simpanInterpolasi(matTitik, matPolinom, titikx, namafilesimpan);
+                System.out.println("File berhasil disimpan dengan nama "+namafilesimpan);
             }
             System.out.println("--------------------------------");
             System.out.println("   Operasi interpolasi polinom  ");
