@@ -88,7 +88,7 @@ public class Interpolasi{
             for (j = 0; j < matPolinom.brs; j++) {
             hasil += matPolinom.Mat[j][matPolinom.kol-1]*Math.pow(titikx.Mat[i][0],j);
             }
-            System.out.printf("p%d(%.2f) = ",matPolinom.brs-1,titikx.Mat[i][0]);
+            System.out.printf("p%d(%.3f) = ",matPolinom.brs-1,titikx.Mat[i][0]);
             System.out.println(hasil);
         }
     }
@@ -97,7 +97,7 @@ public class Interpolasi{
         int i,j;
         int banyakx;
         double hasil;
-        BufferedWriter tulis = new BufferedWriter(new FileWriter("../bin/output/"+namafile));
+        BufferedWriter tulis = new BufferedWriter(new FileWriter("./output/"+namafile));
         for (i = 0; i < matTitik.brs; i++) {
             String baris = "";
             for (j= 0; j < matTitik.kol; j++){

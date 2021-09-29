@@ -11,7 +11,7 @@ persoalan interpolasi dan regresi linier, menghitung matriks balikan, menghitung
 determinan matriks dengan berbagai metode (reduksi baris dan ekspansi kofaktor).
 
 
-## Anggota:
+## Anggota
 <b>Kelompok: 46 (Patnam)</b>
 1. Fachry Dennis Heraldi (13520139)
 2. Willy Wilsen (13520160)

@@ -8,8 +8,6 @@ public class Main{
         MainMenu();
     }
 
-    
-
     public static void MainMenu() {
         try{
             int menu;
@@ -57,9 +55,7 @@ public class Main{
             MainMenu();
         }
     }
-
-   
-
+    
     public static void SubMenuSPL() {
         try{
             int i, metode, jenis, akhir, Nbrs, Nkol;
@@ -301,6 +297,7 @@ public class Main{
         }
 
     }
+    
     public static void SubMenuDet() {
         try{
             int metode, jenis, ukuran, akhir;
@@ -453,6 +450,7 @@ public class Main{
             SubMenuDet();
         }
     }
+    
     public static void SubMenuInv() {
         try{
             int metode, jenis, ukuran;
@@ -635,6 +633,7 @@ public class Main{
             SubMenuInv();
         }
     }
+    
     public static void SubMenuIntpol() {
         try{
             int jenis = 0;
@@ -712,18 +711,20 @@ public class Main{
             SubMenuIntpol();
         }
     }
+    
     public static void SubMenuRLB() {
         try{
             int jenis = 0;
             String namafile = null;
             char simpan = 0;
+            String namafilesimpan = null;
             Matrix mat = new Matrix(0,0);
             Matrix Reg = new Matrix(0,0);
-	    Matrix I = new Matrix(0,0);
-	    Matrix matTitik = new Matrix(0,0);
-	    int x = 0;
-	    int n = 0;
-	    RLB R = new RLB(0,0);
+            Matrix I = new Matrix(0,0);
+            Matrix matTitik = new Matrix(0,0);
+            int x = 0;
+            int n = 0;
+            RLB R = new RLB(0,0);
 
             Scanner input = new Scanner(System.in);
             
@@ -741,14 +742,14 @@ public class Main{
                     System.out.println("--------------------------------");
                     
                     // Pembentukan titik-titik
-		    System.out.print("Masukkan banyaknya jumlah n : ");
-                    n = input.nextInt();
-		    System.out.print("Masukkan banyaknya nilai x : ");
-		    x = input.nextInt();
-		    R = new RLB(n,x);
-		    R.bacaRLB();
-		    I = R.inputX(x);
-		    Reg = R.CreateRLB(x,n);
+                    System.out.print("Masukkan banyaknya jumlah n : ");
+                            n = input.nextInt();
+                    System.out.print("Masukkan banyaknya nilai x : ");
+                    x = input.nextInt();
+                    R = new RLB(n,x);
+                    R.bacaRLB();
+                    I = R.inputX(x);
+                    Reg = R.CreateRLB(x,n);
                     break;
                 case 2:
                     System.out.println("--------------------------------");
@@ -759,21 +760,18 @@ public class Main{
                     namafile = input.next();
                     matTitik.bacaFileMatriks(namafile);
                     System.out.println("File "+namafile+" berhasil diproses.");
-		    I = R.inputX(matTitik.kol-1);
+		            I = R.inputX(matTitik.kol-1);
                     Reg = R.CreateRLBFile(matTitik);
                     break;
                 default:
                     System.out.println("Masukan jenis masukan tidak valid. Ulang kembali dari awal.");
                     SubMenuRLB();
             }
-	    R.persRLB(Reg);
-	    System.out.println("--------------------------------");
-	    R.TaksirX(Reg,I);
+            R.persRLB(Reg);
+            System.out.println("--------------------------------");
+            R.TaksirX(Reg,I);
             System.out.println("--------------------------------");
             if ((jenis==1 || jenis==2)){
-                
-                
-
                 System.out.println("--------------------------------");
                 // Menyimpan file
                 System.out.print("Simpan hasil? (y/n): ");
@@ -781,8 +779,12 @@ public class Main{
             }
 
             if (simpan=='y'){
-                
+                System.out.print("Masukkan nama file penyimpanan (.txt): ");
+                namafilesimpan = input.next();
+                RLB.simpanRLB(matTitik, Reg, I, namafilesimpan);
+                System.out.println("File berhasil disimpan dengan nama "+namafilesimpan);
             }
+            
             System.out.println("--------------------------------");
             System.out.println(" Operasi regresi linier berganda");
             System.out.println("            selesai             ");
@@ -795,6 +797,7 @@ public class Main{
             SubMenuRLB();
         }
     }
+    
     public static int JenisInput(int versi) {
         int jenis=0;
         Scanner input = new Scanner(System.in);
