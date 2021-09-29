@@ -99,7 +99,7 @@ public class Matrix {
 		int i, j;
 		for (i = 0; i < this.brs; i++) {
 			for (j = 0; j < this.kol; j++) {
-				this.Mat[i][j] = in.nextInt();
+				this.Mat[i][j] = in.nextDouble();
 			}
 		}
 	}
