@@ -770,7 +770,6 @@ public class Main{
             R.persRLB(Reg);
             System.out.println("--------------------------------");
             R.TaksirX(Reg,I);
-            System.out.println("--------------------------------");
             if ((jenis==1 || jenis==2)){
                 System.out.println("--------------------------------");
                 // Menyimpan file
