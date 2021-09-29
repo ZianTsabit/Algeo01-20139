@@ -144,14 +144,8 @@ public class RLB {
                 } else {
                     persReg += String.format(" - ");
                 }
-    
-                if (i==1){
                     persReg += Double.toString(Math.abs(R.Mat[i][R.kol-1]));
-                    persReg += "x";
-                } else {
-                    persReg += Double.toString(Math.abs(R.Mat[i][R.kol-1]));
-                    persReg += String.format("%d",i);
-                }
+                    persReg += String.format("x%d",i);
             }
         }
         tulis.write(persReg+"\n");

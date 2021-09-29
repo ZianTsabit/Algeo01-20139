@@ -743,7 +743,7 @@ public class Main{
                     
                     // Pembentukan titik-titik
                     System.out.print("Masukkan banyaknya jumlah n : ");
-                            n = input.nextInt();
+                    n = input.nextInt();
                     System.out.print("Masukkan banyaknya nilai x : ");
                     x = input.nextInt();
                     R = new RLB(n,x);
