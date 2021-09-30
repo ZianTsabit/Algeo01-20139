@@ -116,8 +116,7 @@ public class RLB {
 	static void simpanRLB(Matrix matTitik, Matrix R, Matrix I, String namafile) throws IOException{
 		int i,j;
         double hasil=0;
-		// Menulis titik
-        BufferedWriter tulis = new BufferedWriter(new FileWriter("./output/"+namafile));
+        BufferedWriter tulis = new BufferedWriter(new FileWriter("../test/output/"+namafile));
         for (i = 0; i < matTitik.brs; i++) {
             String baris = "";
             for (j= 0; j < matTitik.kol; j++){

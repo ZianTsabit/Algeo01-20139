@@ -459,7 +459,7 @@ public class Main{
             if (simpan=='y'){
                 System.out.print("Masukkan nama file penyimpanan (.txt): ");
                 namafile = input.next();
-                BufferedWriter tulis = new BufferedWriter(new FileWriter("./output/"+namafile));
+                BufferedWriter tulis = new BufferedWriter(new FileWriter("../test/output/"+namafile));
                 for (int i = 0; i < mat.brs; i++) {
                     String baris = "";
                     for (int j= 0; j < mat.kol; j++){
@@ -627,7 +627,7 @@ public class Main{
             if (simpan=='y'){
                 System.out.print("Masukkan nama file penyimpanan (.txt): ");
                 namafile = input.next();
-                BufferedWriter tulis = new BufferedWriter(new FileWriter("./output/"+namafile));
+                BufferedWriter tulis = new BufferedWriter(new FileWriter("../test/output/"+namafile));
                 for (int i = 0; i < mat.brs; i++) {
                     String baris = "";
                     for (int j= 0; j < mat.kol; j++){

@@ -97,7 +97,7 @@ public class Interpolasi{
         int i,j;
         int banyakx;
         double hasil;
-        BufferedWriter tulis = new BufferedWriter(new FileWriter("./output/"+namafile));
+        BufferedWriter tulis = new BufferedWriter(new FileWriter("../test/output/"+namafile));
         for (i = 0; i < matTitik.brs; i++) {
             String baris = "";
             for (j= 0; j < matTitik.kol; j++){

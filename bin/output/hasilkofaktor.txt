@@ -1,6 +1,0 @@
-1.0 2.0 
-3.0 4.0 
-
-Dengan menggunakan ekspansi kofaktor, didapatkan matriks balikan dari matriks tersebut adalah: 
-1.0 2.0 
-3.0 4.0 
