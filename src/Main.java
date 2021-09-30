@@ -203,23 +203,23 @@ public class Main{
                     System.out.println("Matriks balikan tidak berlaku");
                     System.out.println("Matriks tidak persegi");
                 } else {
-                if(mat.determinanKofaktor() == 0) {
-                System.out.println("Matriks balikan tidak berlaku");
-                System.out.println("Matriks tidak memiliki balikan");
-                System.out.println("Determinan matriks adalah 0");
-                }else{
-                System.out.println("Masukan matriks B: ");
-                b = new double[Nbrs][1];
-                for (i = 0; i < Nbrs; i++) {
-                    b[i][0] = input.nextInt();
-                }	
-                System.out.println("Dengan metode matriks balikan");
-                System.out.println("Didapatkan penyelesaian");	
-                hasil = mat.metodeInvers(b);
-                System.out.print(hasil);
-                System.out.println();
-                }   
-		}
+                    if(mat.determinanKofaktor() == 0) {
+                    System.out.println("Matriks balikan tidak berlaku");
+                    System.out.println("Matriks tidak memiliki balikan");
+                    System.out.println("Determinan matriks adalah 0");
+                    }else{
+                    System.out.println("Masukan matriks B: ");
+                    b = new double[Nbrs][1];
+                    for (i = 0; i < Nbrs; i++) {
+                        b[i][0] = input.nextInt();
+                    }	
+                    System.out.println("Dengan metode matriks balikan");
+                    System.out.println("Didapatkan penyelesaian");	
+                    hasil = mat.metodeInvers(b);
+                    System.out.print(hasil);
+                    System.out.println();
+                    }   
+		        }
                 System.out.println("--------------------------------");
                 // Menyimpan file
                 System.out.print("Simpan hasil? (y/n): ");
