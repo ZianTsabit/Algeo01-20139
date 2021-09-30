@@ -58,14 +58,16 @@ public class Main{
     
     public static void SubMenuSPL() {
         try{
-            int i, metode, jenis, akhir, Nbrs, Nkol;
+            int i,j, metode, jenis, akhir, Nbrs, Nkol;
             String hasil = "";
-	    double b[][];
-	    jenis = 0;
-	    Nbrs = 0;
+	        double b[][];
+	        jenis = 0;
+	        Nbrs = 0;
             String namafile = null;
             char simpan = 0;
-	    Matrix mat = new Matrix(0,0);
+	        Matrix mat = new Matrix(0,0);
+            Matrix matA = new Matrix(0,0);
+            double[][] matB = new double[0][0];
             Scanner input = new Scanner(System.in);
             
             
@@ -126,9 +128,6 @@ public class Main{
                     System.out.println("   Jenis masukan yang dipilih:  ");
                     System.out.println("    1. Masukan dari keyboard    ");
                     System.out.println("--------------------------------");
-                    System.out.println("            PERHATIAN           ");
-                    System.out.println("Pastikan input matriks augmented");
-                    System.out.println("--------------------------------");
                     System.out.print("Masukkan jumlah baris: ");
                     Nbrs = input.nextInt();
                     System.out.print("Masukkan jumlah kolom: ");
@@ -163,6 +162,21 @@ public class Main{
             System.out.println("Matriks yang terbaca: ");
             mat.tulisMatriks();
 
+            if ((metode == 3 || metode == 4) && jenis == 2){
+                matA = new Matrix(mat.brs,mat.brs);
+                matB = new double[mat.brs][1];
+                for (i=0; i < mat.brs; i++){
+                    for (j=0; j < mat.kol; j++){
+                        if (j==mat.kol-1){
+                            matB[i][0] = mat.Mat[i][j];
+                        } else {
+                            matA.Mat[i][j] = mat.Mat[i][j];
+                        }
+                        
+                    }
+                }
+            }
+            
             if (metode==1 && (jenis==1 || jenis==2) ){
                 // Penyelesaian SPL dengan metode eliminasi gauss
                 System.out.println("--------------------------------");
@@ -196,72 +210,107 @@ public class Main{
                 System.out.print("Simpan hasil? (y/n): ");
                 simpan = input.next().charAt(0);
 
-            } else if (metode==3 && (jenis==1 || jenis==2)) {
+            } else if (metode==3) {
                 // Penyelesaian SPL dengan metode matriks balikan
                 System.out.println("--------------------------------");
-                if(!mat.isPersegi()) {
-                    System.out.println("Matriks balikan tidak berlaku");
-                    System.out.println("Matriks tidak persegi");
-                } else {
-                    if(mat.determinanKofaktor() == 0) {
-                    System.out.println("Matriks balikan tidak berlaku");
-                    System.out.println("Matriks tidak memiliki balikan");
-                    System.out.println("Determinan matriks adalah 0");
-                    }else{
-                    System.out.println("Masukan matriks B: ");
-                    b = new double[Nbrs][1];
-                    for (i = 0; i < Nbrs; i++) {
-                        b[i][0] = input.nextInt();
-                    }	
-                    System.out.println("Dengan metode matriks balikan");
-                    System.out.println("Didapatkan penyelesaian");	
-                    hasil = mat.metodeInvers(b);
-                    System.out.print(hasil);
-                    System.out.println();
-                    }   
-		        }
+                if (jenis==1) {
+                    if(!mat.isPersegi()) {
+                        System.out.println("Matriks balikan tidak berlaku");
+                        System.out.println("Matriks tidak persegi");
+                    } else {
+                        if(mat.determinanKofaktor() == 0) {
+                        System.out.println("Matriks balikan tidak berlaku");
+                        System.out.println("Matriks tidak memiliki balikan");
+                        System.out.println("Determinan matriks adalah 0");
+                        } else {
+                            System.out.println("Masukan matriks B: ");
+                            b = new double[Nbrs][1];
+                            for (i = 0; i < Nbrs; i++) {
+                                b[i][0] = input.nextInt();
+                            }	
+                            System.out.println("Dengan metode matriks balikan");
+                            System.out.println("didapatkan penyelesaian");	
+                            hasil = mat.metodeInvers(b);
+                        }   
+                    }
+                } else if(jenis == 2){
+                    if(!matA.isPersegi()) {
+                        System.out.println("Matriks balikan tidak berlaku");
+                        System.out.println("Matriks tidak persegi");
+                    } else {
+                        if(matA.determinanKofaktor() == 0) {
+                        System.out.println("Matriks balikan tidak berlaku");
+                        System.out.println("Matriks tidak memiliki balikan");
+                        System.out.println("Determinan matriks adalah 0");
+                        } else {
+                            System.out.println("Dengan metode matriks balikan");
+                            System.out.println("didapatkan penyelesaian");	
+                            hasil = matA.metodeInvers(matB);
+                        }   
+                    }
+                }
+                System.out.print(hasil);
+                System.out.println();
                 System.out.println("--------------------------------");
                 // Menyimpan file
                 System.out.print("Simpan hasil? (y/n): ");
                 simpan = input.next().charAt(0);
 
-            } else if (metode==4 && (jenis==1 || jenis==2)) {
+            } else if (metode==4) {
                 // Penyelesaian SPL dengan metode kaidah cramer
                 System.out.println("--------------------------------");
-                if(!mat.isPersegi()) {
-                    System.out.println("Kaidah Cramer tidak berlaku");
-                    System.out.println("Matriks tidak persegi");
-                } else{
-                if(mat.determinanKofaktor() == 0) {
-                System.out.println("Kaidah Cramer tidak berlaku");
-                System.out.println("Determinan matriks adalah 0");
-                }else{
-                System.out.println("Masukan matriks B: ");
-                b = new double[Nbrs][1];
-                for (i = 0; i < Nbrs; i++) {
-                    b[i][0] = input.nextInt();
-                }	
-                System.out.println("Dengan metode Kaidah Cramer");
-                System.out.println("Didapatkan penyelesaian");	
-                hasil = mat.Cramer(b);
+                if (jenis==1){
+                    if(!mat.isPersegi()) {
+                        System.out.println("Kaidah Cramer tidak berlaku");
+                        System.out.println("Matriks tidak persegi");
+                    } else {
+                        if(mat.determinanKofaktor() == 0) {
+                        System.out.println("Kaidah Cramer tidak berlaku");
+                        System.out.println("determinan matriks adalah 0");
+                        } else {
+                            System.out.println("Masukan matriks B: ");
+                            b = new double[Nbrs][1];
+                            for (i = 0; i < Nbrs; i++) {
+                                b[i][0] = input.nextInt();
+                            }	
+                            System.out.println("Dengan metode Kaidah Cramer");
+                            System.out.println("didapatkan penyelesaian");	
+                            hasil = mat.Cramer(b);
+                            
+                        }
+                    }
+                } else if (jenis==2){
+                    if(!matA.isPersegi()) {
+                        System.out.println("Kaidah Cramer tidak berlaku");
+                        System.out.println("Matriks tidak persegi");
+                    } else {
+                        if(matA.determinanKofaktor() == 0) {
+                        System.out.println("Kaidah Cramer tidak berlaku");
+                        System.out.println("Determinan matriks adalah 0");
+                        } else {
+                            System.out.println("Dengan metode Kaidah Cramer");
+                            System.out.println("didapatkan penyelesaian");	
+                            hasil = matA.Cramer(matB);
+                            
+                        }
+                    }
+                }
                 System.out.print(hasil);
                 System.out.println();
-                }
-		}
                 System.out.println("--------------------------------");
                 // Menyimpan file
                 System.out.print("Simpan hasil? (y/n): ");
                 simpan = input.next().charAt(0);
             }
 
-            if (simpan=='y'){
+            if (simpan=='y') {
                 System.out.print("Masukkan nama file penyimpanan (.txt): ");
                 namafile = input.next();
-                BufferedWriter tulis = new BufferedWriter(new FileWriter("./output/"+namafile));
+                BufferedWriter tulis = new BufferedWriter(new FileWriter("../test/output/"+namafile));
                 // menyimpan matriks
                 for (i = 0; i < mat.brs; i++) {
                     String baris = "";
-                    for (int j= 0; j < mat.kol; j++){
+                    for (j= 0; j < mat.kol; j++){
                         baris += Double.toString(mat.Mat[i][j]);
                         if (j!=mat.kol){
                             baris += " ";
