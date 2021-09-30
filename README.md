@@ -10,12 +10,14 @@ Program dalam bahasa Java yang dapat menyelesaikan berbagai persoalan dalam bent
 persoalan interpolasi dan regresi linier, menghitung matriks balikan, menghitung 
 determinan matriks dengan berbagai metode (reduksi baris dan ekspansi kofaktor).
 
-Penjelasan singkat mengenai folder: <br>
+Penjelasan singkat mengenai folder/file: <br>
 `bin` berisi java bytecode (*.class) <br>
 `src` berisi source code dari program java <br>
 `test` berisi data uji <br>
 `test/output` berisi file penyimpanan hasil operasi <br>
 `doc` berisi laporan dan spesifikasi tugas <br>
+`run.bat` file untuk menjalankan program (compile and run) <br>
+`README.md` file readme sebagai deskripsi keseluruhan <br>
 
 
 ## Anggota
