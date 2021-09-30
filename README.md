@@ -10,19 +10,21 @@ Program dalam bahasa Java yang dapat menyelesaikan berbagai persoalan dalam bent
 persoalan interpolasi dan regresi linier, menghitung matriks balikan, menghitung 
 determinan matriks dengan berbagai metode (reduksi baris dan ekspansi kofaktor).
 
-Penjelasan singkat mengenai folder
-`bin` berisi java bytecode (*.class)
-`src` berisi source code dari program java
-`test` berisi data uji
-`test/output` berisi file penyimpanan hasil operasi
-`doc` berisi laporan dan spesifikasi tugas
+Penjelasan singkat mengenai folder/file: <br>
+`bin` berisi java bytecode (*.class) <br>
+`src` berisi source code dari program java <br>
+`test` berisi data uji <br>
+`test/output` berisi file penyimpanan hasil operasi <br>
+`doc` berisi laporan dan spesifikasi tugas <br>
+`run.bat` file untuk menjalankan program (compile and run) <br>
+`README.md` file readme sebagai deskripsi keseluruhan <br>
 
 
 ## Anggota
 <b>Kelompok Patnam</b>
-1. Fachry Dennis Heraldi (13520139) <a href="https://github.com/dennisheraldi">Github</a>
-2. Willy Wilsen (13520160) <a href="https://github.com/TubesForLyfe">Github</a>
-3. Ghazian Tsabit Alkamil (13520165) <a href="https://github.com/ZianTsabit">Github</a>
+1. Fachry Dennis Heraldi (13520139) <a href="https://github.com/dennisheraldi">GitHub</a>
+2. Willy Wilsen (13520160) <a href="https://github.com/TubesForLyfe">GitHub</a>
+3. Ghazian Tsabit Alkamil (13520165) <a href="https://github.com/ZianTsabit">GitHub</a>
 
 ## Cara menjalankan program
 *ALTERNATIF 1*
